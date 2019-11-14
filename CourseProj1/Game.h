@@ -17,6 +17,7 @@ class Game
 		static Game* Instance();
 		int CreateWindow(string windowTitle, float width, float height);
 		void Dispose();
+
 	private:
 		Game();
 		~Game();
