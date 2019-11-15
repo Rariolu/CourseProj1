@@ -12,11 +12,13 @@ enum class COLLIDERTYPE
 class Collider
 {
 	public:
-		Collider(COLLIDERTYPE type);
+		Collider(COLLIDERTYPE type, Vec3* pos);
 		virtual bool CollidesWith(Collider* other) = 0;
 		COLLIDERTYPE ColliderType();
+		Vec3 GetPosition();
 	private:
 		COLLIDERTYPE colliderType;
+		Vec3* position;
 };
 
 #endif

@@ -136,6 +136,7 @@ xcopy /Y "$(SolutionDir)Dependencies\SDL\lib\*.dll" "$(OutDir)"</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AbstractShader.cpp" />
+    <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Demo.cpp" />
@@ -164,6 +165,7 @@ xcopy /Y "$(SolutionDir)Dependencies\SDL\lib\*.dll" "$(OutDir)"</Command>
   <ItemGroup>
     <ClInclude Include="AbstractShader.h" />
     <ClInclude Include="Aliases.h" />
+    <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Constants.h" />
