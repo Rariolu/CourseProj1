@@ -137,6 +137,7 @@ xcopy /Y "$(SolutionDir)Dependencies\SDL\lib\*.dll" "$(OutDir)"</Command>
   <ItemGroup>
     <ClCompile Include="AbstractShader.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Demo.cpp" />
     <ClCompile Include="DoubleUniformShader.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -153,6 +154,7 @@ xcopy /Y "$(SolutionDir)Dependencies\SDL\lib\*.dll" "$(OutDir)"</Command>
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="ObjLoad.cpp" />
     <ClCompile Include="SDLWindowManager.cpp" />
+    <ClCompile Include="SphereCollider.cpp" />
     <ClCompile Include="stb_image.c" />
     <ClCompile Include="Temp_obj_loader.cpp" />
     <ClCompile Include="Transform.cpp" />
@@ -163,6 +165,7 @@ xcopy /Y "$(SolutionDir)Dependencies\SDL\lib\*.dll" "$(OutDir)"</Command>
     <ClInclude Include="AbstractShader.h" />
     <ClInclude Include="Aliases.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Collider.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Demo.h" />
     <ClInclude Include="DoubleUniformShader.h" />
@@ -180,6 +183,7 @@ xcopy /Y "$(SolutionDir)Dependencies\SDL\lib\*.dll" "$(OutDir)"</Command>
     <ClInclude Include="Scene.h" />
     <ClInclude Include="ObjLoad.h" />
     <ClInclude Include="SDLWindowManager.h" />
+    <ClInclude Include="SphereCollider.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Temp_obj_loader.h" />
     <ClInclude Include="Transform.h" />
@@ -189,6 +193,12 @@ xcopy /Y "$(SolutionDir)Dependencies\SDL\lib\*.dll" "$(OutDir)"</Command>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="CourseProj1.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Resources\gpuTransTest.frag" />
+    <None Include="..\Resources\gpuTransTest.vert" />
+    <None Include="..\Resources\gpuTransTest2.frag" />
+    <None Include="..\Resources\gpuTransTest2.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

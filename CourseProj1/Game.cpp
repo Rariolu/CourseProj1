@@ -50,23 +50,19 @@ void Game::ResourceSetup()
 
 	//Add meshes
 
-	//if (LoadOBJ(mesh1File, mesh1))
-	//{
-	//	resourceManager->AddMesh(mesh1Name, mesh1);
-	//}
 	SetupMesh(mesh1Name, mesh1File);
 	SetupMesh(mesh2Name, mesh2File);
 	SetupMesh(ballMeshName, ballMeshFile);
 
 	//Shaders
-	//Shader* shader1 = new Shader(shaderFile);
+	OriginalShader* shader1 = new OriginalShader(shaderFile);
 	//resourceManager->AddShader(shaderName, shader1);
+	
 	DoubleUniformShader* shader2 = new DoubleUniformShader(alternateShaderFile);
-	resourceManager->AddShader(shaderName, shader2);
+	//resourceManager->AddShader(shaderName, shader2);
 
-	//Shader* shader3 = new Shader(alternateShaderFile2);
-	//resourceManager->AddShader(shaderName, shader3);
-
+	QuadrupleUniformShader* shader3 = new QuadrupleUniformShader(alternateShaderFile2);
+	resourceManager->AddShader(shaderName, shader3);
 
 	//Add scenes
 	resourceManager->AddScene(demoScene, new Demo());
@@ -75,6 +71,10 @@ void Game::ResourceSetup()
 
 void Game::SetupMesh(string name, string objfile)
 {
+	//if (LoadOBJ(mesh1File, mesh1))
+	//{
+	//	resourceManager->AddMesh(mesh1Name, mesh1);
+	//}
 	OBJModel model(objfile);
 	ObjIndexedModel imodel = model.ToIndexedModel();
 	Mesh* mesh = Mesh::LoadModel(&imodel);

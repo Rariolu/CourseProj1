@@ -4,5 +4,6 @@
 #include "Aliases.h"
 
 string LoadText(string filename);
+float SquareValue(float value);
 
 #endif

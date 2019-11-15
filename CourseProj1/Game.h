@@ -9,7 +9,10 @@
 //#include "ObjLoad.h"
 #include "Temp_obj_loader.h"
 #include "ModelTexture.h"
+#include "OriginalShader.h"
 #include "DoubleUniformShader.h"
+#include "QuadrupleUniformShader.h"
+
 
 class Game
 {

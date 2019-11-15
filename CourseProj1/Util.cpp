@@ -17,3 +17,8 @@ string LoadText(string filename)
 	}
 	return output;
 }
+
+float SquareValue(float value)
+{
+	return value * value;
+}
