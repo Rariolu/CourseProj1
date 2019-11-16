@@ -206,6 +206,8 @@ xcopy /Y "$(SolutionDir)Dependencies\SDL\lib\*.dll" "$(OutDir)"</Command>
     <None Include="..\Resources\gpuTransTest.vert" />
     <None Include="..\Resources\gpuTransTest2.frag" />
     <None Include="..\Resources\gpuTransTest2.vert" />
+    <None Include="..\Resources\shader.frag" />
+    <None Include="..\Resources\shader.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
