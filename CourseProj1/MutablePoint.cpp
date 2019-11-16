@@ -7,28 +7,34 @@ Vec3* MutablePoint::GetPosition()
 
 void MutablePoint::SetPosition(float x, float y, float z)
 {
-	SetPosition(Vec3(x, y, z));
+	position.x = x;
+	position.y = y;
+	position.z = z;
 }
 
 void MutablePoint::SetPosition(Vec3 position)
 {
-	this->position = position;
+	SetPosition(position.x, position.y, position.z);
 }
 
-void MutablePoint::Translate(AXIS axis, float t)
+void MutablePoint::Translate(AXIS axis, float a)
 {
 	switch (axis)
 	{
 		case AXIS::X:
-			SetPosition(position.x + t, position.y, position.z);
+		{
+			SetPosition(position.x + a, position.y, position.z);
 			break;
+		}
 		case AXIS::Y:
-			SetPosition(position.x, position.y + t, position.z);
+		{
+			SetPosition(position.x, position.y + a, position.z);
 			break;
+		}
 		case AXIS::Z:
-			SetPosition(position.x, position.y, position.z + t);
+		{
+			SetPosition(position.x, position.y, position.z + a);
 			break;
-		default:
-			break;
+		}
 	}
 }

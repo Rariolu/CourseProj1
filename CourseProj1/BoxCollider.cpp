@@ -34,9 +34,9 @@ bool BoxCollider::CollidesWith(Collider* other)
 bool BoxCollider::CollidesWith(BoxCollider* other)
 {
 	Box* otherBound = other->BoundBox();
-	bool x = boundBox->minX() <= otherBound->maxX() && boundBox->maxX() >= otherBound->minX();;
-	bool y = boundBox->minY() <= otherBound->maxY && boundBox->maxY >= otherBound->minY();
-	bool z = boundBox->minZ() <= otherBound->maxZ && boundBox->maxZ >= otherBound->minZ();
+	bool x = boundBox->minX() <= otherBound->maxX() && boundBox->maxX() >= otherBound->minX();
+	bool y = boundBox->minY() <= otherBound->maxY() && boundBox->maxY() >= otherBound->minY();
+	bool z = boundBox->minZ() <= otherBound->maxZ() && boundBox->maxZ() >= otherBound->minZ();
 	return x && y && z;
 }
 
