@@ -11,7 +11,7 @@ void ProjectileScene::Initialise()
 	Scene::Initialise();
 	camera->SetPosition(0.0f, 0.0f, -5.0f);
 
-	AddGameObject(mesh1Name, texture1Name, shaderName);
+	AddGameObject(cubeName, texture1Name, shaderName);
 }
 
 void ProjectileScene::LaunchProjectile()

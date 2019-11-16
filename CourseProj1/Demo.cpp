@@ -15,7 +15,7 @@ void Demo::Initialise()
 	Scene::Initialise();
 	camera->SetPosition(Vec3(0, 0, -5.0f));
 	ResourceManager* rManager = ResourceManager::Instance();
-	obj = AddGameObject(mesh1Name, texture1Name, shaderName);
+	obj = AddGameObject(cubeName, texture1Name, shaderName);
 	obj2 = AddGameObject(mesh2Name, texture1Name, shaderName);
 	obj2->SetPosition(Vec3(3.5f, -2.4f, 1.7f));
 }

@@ -13,24 +13,18 @@ bool SphereCollider::CollidesWith(Collider* other)
 		{
 			return CollidesWith((SphereCollider*)other);
 		}
-		default:
-		{
-			break;
-		}
 	}
 	return false;
 }
 
 bool SphereCollider::CollidesWith(SphereCollider* other)
 {
-	return true;
-	//Vec3 otherPos = other->GetPosition();
-	//float rSumSquared = SquareValue(other->GetRadius() + other->GetRadius());
-	//float dSquared = SquareValue(position->x - otherPos.x) + SquareValue(position->y - otherPos.y) + SquareValue(position->z - otherPos.z);
-	//return dSquared <= rSumSquared;
+	Vec3 pos = GetPosition();
+	Vec3 otherPos = other->GetPosition();
+	float rSumSquared = SquareValue(other->GetRadius() + other->GetRadius());
+	float dSquared = SquareValue(pos.x - otherPos.x) + SquareValue(pos.y - otherPos.y) + SquareValue(pos.z - otherPos.z);
+	return dSquared <= rSumSquared;
 }
-
-
 
 float SphereCollider::GetRadius()
 {

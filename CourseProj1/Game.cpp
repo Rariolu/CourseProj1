@@ -50,7 +50,7 @@ void Game::ResourceSetup()
 
 	//Add meshes
 
-	SetupMesh(mesh1Name, mesh1File);
+	SetupMesh(cubeName, mesh1File);
 	SetupMesh(mesh2Name, mesh2File);
 	SetupMesh(ballMeshName, ballMeshFile);
 

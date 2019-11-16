@@ -1,6 +1,8 @@
 #ifndef _CONSTANTS_H
 #define _CONSTANTS_H
 
+#include "Aliases.h"
+
 //Textures
 
 const string texture1Name = "texture1";
@@ -11,7 +13,7 @@ const string texture2File = "..\\Resources\\texture2.png";
 
 //Meshes
 
-const string mesh1Name = "mesh1";
+const string cubeName = "cube";
 const string mesh1File = "..\\Resources\\mesh1.obj";
 
 const string mesh2Name = "mesh2";
