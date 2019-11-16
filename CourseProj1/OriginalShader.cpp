@@ -3,7 +3,8 @@
 OriginalShader::OriginalShader(string filename) : AbstractShader(filename)
 {
 	GLuint program = GetProgram();
-	glBindAttribLocation(program, 0, "position"); // associate attribute variable with our shader program attribute (in this case attribute vec3 position;)
+
+	glBindAttribLocation(program, 0, "position");
 	glBindAttribLocation(program, 1, "texCoord");
 
 	uniform = glGetUniformLocation(program, "mvp");

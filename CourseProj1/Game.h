@@ -12,6 +12,7 @@
 #include "OriginalShader.h"
 #include "DoubleUniformShader.h"
 #include "QuadrupleUniformShader.h"
+#include "QuadMShader.h"
 
 
 class Game

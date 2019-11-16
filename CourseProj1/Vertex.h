@@ -3,6 +3,7 @@
 
 #include "Aliases.h"
 
+//A struct representing an indiviual mesh vertex.
 struct Vertex
 {
 	public :

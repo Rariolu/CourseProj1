@@ -29,6 +29,7 @@ const string shaderFile = "..\\Resources\\shader";
 //const string alternateShaderName = "alternateShader";
 const string alternateShaderFile = "..\\Resources\\gpuTransTest";
 const string alternateShaderFile2 = "..\\Resources\\gpuTransTest2";
+const string quadMShaderFile = "..\\Resources\\quadMShader";
 
 //Scenes
 
