@@ -30,7 +30,8 @@ int Game::CreateWindow(string windowTitle, float width, float height)
 	}
 	ResourceSetup();
 	//Run(demoScene);
-	Run(projectileScene);
+	//Run(projectileScene);
+	Run(collisionDemoScene);
 	return 0;
 }
 
@@ -70,6 +71,7 @@ void Game::ResourceSetup()
 	//Add scenes
 	resourceManager->AddScene(demoScene, new Demo());
 	resourceManager->AddScene(projectileScene, new ProjectileScene());
+	resourceManager->AddScene(collisionDemoScene, new CollisionDemoScene());
 }
 
 void Game::SetupMesh(string name, string objfile)

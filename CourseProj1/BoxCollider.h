@@ -15,9 +15,9 @@ class BoxCollider : public Collider
 		BoxCollider(Vec3 bounds, Vec3* pos);
 		BoxCollider(Box* box, Vec3* pos);
 		bool CollidesWith(Collider* other);
+		bool CollidesWith(BoxCollider* other);
 		Box* BoundBox();
 	private:
-		bool CollidesWith(BoxCollider* other);
 		bool CollidesWith(SphereCollider* other);
 		
 		//A box which represents the boundaries

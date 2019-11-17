@@ -6,17 +6,17 @@
 struct Box
 {
 	public:
-		Box(Vec3 pos, Vec3 bounds)
+		Box(Vec3 bounds)
 		{
 			float xDelta = bounds.x / 2.0f;
 			float yDelta = bounds.y / 2.0f;
 			float zDelta = bounds.z / 2.0f;
-			/*minX vals[3]*/x[0] = pos.x - xDelta;
-			/*minY vals[4]*/y[0] = pos.y - yDelta;
-			/*minZ vals[5]*/z[0] = pos.z - zDelta;
-			/*maxX vals[0]*/x[1] = pos.x + xDelta;
-			/*maxY vals[1]*/y[1] = pos.y + yDelta;
-			/*maxZ vals[2]*/z[1] = pos.z + zDelta;
+			/*minX vals[3]*/x[0] =	-xDelta;
+			/*minY vals[4]*/y[0] =	-yDelta;
+			/*minZ vals[5]*/z[0] =	-zDelta;
+			/*maxX vals[0]*/x[1] =	xDelta;
+			/*maxY vals[1]*/y[1] =	yDelta;
+			/*maxZ vals[2]*/z[1] =	zDelta;
 			corners[0] = Vec3(x[0], y[0], z[0]);
 			corners[1] = Vec3(x[0], y[0], z[1]);
 			corners[2] = Vec3(x[0], y[1], z[0]);
@@ -26,25 +26,69 @@ struct Box
 			corners[6] = Vec3(x[1], y[1], z[0]);
 			corners[7] = Vec3(x[1], y[1], z[1]);
 		}
-		Box() : Box(Vec3(0, 0, 0), Vec3(1, 1, 1))
+		Box() : Box(Vec3(1, 1, 1))
 		{
 
 		}
-		float maxX() { return x[1]; }// return vals[0]; }
-		float maxY() { return y[1]; }//return vals[1]; }
-		float maxZ() { return z[1]; }//return vals[2]; }
-		float minX() { return x[0]; }//return vals[3]; }
-		float minY() { return y[0]; }// return vals[4]; }
-		float minZ() { return z[0]; }// return vals[5]; }
-		float* Xs()	{ return x; }
-		float* Ys() { return y; }
-		float* Zs() { return z; }
+		void SetPosition(Vec3* pos)
+		{
+			position = pos;
+		}
+		Vec3 xyz()
+		{
+			return Vec3(minX(), minY(), minZ());
+		}
+		Vec3 xyZ()
+		{
+			return Vec3(minX(), minY(), maxZ());
+		}
+		Vec3 xYz()
+		{
+			return Vec3(minX(), maxY(), minZ());
+		}
+		Vec3 xYZ()
+		{
+			return Vec3(minX(), maxY(), maxZ());
+		}
+		Vec3 Xyz()
+		{
+			return Vec3(maxX(), minY(), minZ());
+		}
+		Vec3 XyZ()
+		{
+			return Vec3(maxX(), minY(), maxZ());
+		}
+		Vec3 XYz()
+		{
+			return Vec3(maxX(), maxY(), minZ());
+		}
+		Vec3 XYZ()
+		{
+			return Vec3(maxX(), maxY(), maxZ());
+		}
+		float minX() { return position->x + x[0]; }//return vals[3]; }
+		float minY() { return position->y + y[0]; }// return vals[4]; }
+		float minZ() { return position->z + z[0]; }// return vals[5]; }
+		float maxX() { return position->x + x[1]; }// return vals[0]; }
+		float maxY() { return position->y + y[1]; }//return vals[1]; }
+		float maxZ() { return position->z + z[1]; }//return vals[2]; }
 		Vec3* Corners()
 		{
-			return corners;
+			return new Vec3[CornerNo]
+			{
+				xyz(),
+				xyZ(),
+				xYz(),
+				xYZ(),
+				Xyz(),
+				XyZ(),
+				XYz(),
+				XYZ()
+			};
 		}
 		static const int CornerNo = 8;
 	private:
+		Vec3* position = new Vec3(0,0,0);
 		Vec3 corners[CornerNo];
 		float x[2];
 		float y[2];

@@ -1,6 +1,6 @@
 #include "BoxCollider.h"
 
-BoxCollider::BoxCollider(Vec3 bounds, Vec3* pos) : BoxCollider(new Box(*pos,bounds),pos)
+BoxCollider::BoxCollider(Vec3 bounds, Vec3* pos) : BoxCollider(new Box(bounds),pos)
 {
 	
 }
@@ -8,6 +8,7 @@ BoxCollider::BoxCollider(Vec3 bounds, Vec3* pos) : BoxCollider(new Box(*pos,boun
 BoxCollider::BoxCollider(Box* box, Vec3* pos) : Collider(COLLIDERTYPE::BOX, pos)
 {
 	boundBox = box;
+	boundBox->SetPosition(pos);
 }
 
 Box* BoxCollider::BoundBox()
@@ -33,6 +34,8 @@ bool BoxCollider::CollidesWith(Collider* other)
 
 bool BoxCollider::CollidesWith(BoxCollider* other)
 {
+	Vec3 pos = GetPosition();
+	Vec3 oPos = other->GetPosition();
 	Box* otherBound = other->BoundBox();
 	bool x = boundBox->minX() <= otherBound->maxX() && boundBox->maxX() >= otherBound->minX();
 	bool y = boundBox->minY() <= otherBound->maxY() && boundBox->maxY() >= otherBound->minY();
@@ -49,7 +52,7 @@ bool BoxCollider::CollidesWith(SphereCollider* other)
 	{
 		Vec3 corner = corners[i];
 		float d2 = SquareValue(pos.x - corner.x) + SquareValue(pos.y - corner.y) + SquareValue(pos.z - corner.z);
-		if (d2 < r2)
+		if (d2 <= r2)
 		{
 			return true;
 		}

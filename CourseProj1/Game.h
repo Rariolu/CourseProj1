@@ -6,6 +6,7 @@
 #include "Constants.h"
 #include "Demo.h"
 #include "ProjectileScene.h"
+#include "CollisionDemoScene.h"
 //#include "ObjLoad.h"
 #include "Temp_obj_loader.h"
 #include "ModelTexture.h"

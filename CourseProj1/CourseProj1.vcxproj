@@ -153,6 +153,7 @@ xcopy /Y "$(SolutionDir)Dependencies\SDL\lib\*.dll" "$(OutDir)"</Command>
     <ClCompile Include="program.cpp" />
     <ClCompile Include="ProjectileGameObject.cpp" />
     <ClCompile Include="ProjectileScene.cpp" />
+    <ClCompile Include="QuadMShader.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="ObjLoad.cpp" />
@@ -185,6 +186,7 @@ xcopy /Y "$(SolutionDir)Dependencies\SDL\lib\*.dll" "$(OutDir)"</Command>
     <ClInclude Include="OriginalShader.h" />
     <ClInclude Include="ProjectileGameObject.h" />
     <ClInclude Include="ProjectileScene.h" />
+    <ClInclude Include="QuadMShader.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Scene.h" />
@@ -206,6 +208,8 @@ xcopy /Y "$(SolutionDir)Dependencies\SDL\lib\*.dll" "$(OutDir)"</Command>
     <None Include="..\Resources\gpuTransTest.vert" />
     <None Include="..\Resources\gpuTransTest2.frag" />
     <None Include="..\Resources\gpuTransTest2.vert" />
+    <None Include="..\Resources\quadMShader.frag" />
+    <None Include="..\Resources\quadMShader.vert" />
     <None Include="..\Resources\shader.frag" />
     <None Include="..\Resources\shader.vert" />
   </ItemGroup>

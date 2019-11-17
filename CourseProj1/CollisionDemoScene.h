@@ -2,6 +2,8 @@
 #define _COLLISIONDEMOSCENE_H
 
 #include "Scene.h"
+#include "CollisionCube.h"
+#include <iostream>
 
 class CollisionDemoScene : public Scene
 {
@@ -13,6 +15,10 @@ class CollisionDemoScene : public Scene
 		bool KeyDown(SDL_Keycode keycode);
 		bool MouseDown(SDL_MouseButtonEvent mousebutton);
 		bool Update();
+		void WASD(SDL_Keycode keycode);
+		CollisionCube* cube1;
+		CollisionCube* cube2;
+		float speed = 50.0f;
 };
 
 #endif
