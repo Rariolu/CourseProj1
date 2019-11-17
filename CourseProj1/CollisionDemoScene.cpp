@@ -16,8 +16,12 @@ void CollisionDemoScene::Initialise()
 	camera->SetPosition(Vec3(0, 0, -5.0f));
 	cube1 = new CollisionCube();
 	cube2 = new CollisionCube();
-	AddGameObject(cube1);
-	AddGameObject(cube2);
+	sphere1 = new CollisionSphere();
+	sphere2 = new CollisionSphere();
+	//AddGameObject(cube1);
+	//AddGameObject(cube2);
+	AddGameObject(sphere1);
+	AddGameObject(sphere2);
 }
 
 bool CollisionDemoScene::KeyDown(SDL_Keycode keycode)
@@ -31,7 +35,10 @@ bool CollisionDemoScene::KeyDown(SDL_Keycode keycode)
 		}
 		case SDLK_SPACE:
 		{
-			std::cout << "Collision: " << cube1->CollidesWith(cube2) << ";" << std::endl;
+			std::cout << "C1->C2 Collision: " << sphere1->CollidesWith(sphere2) << ";" << std::endl;
+			std::cout << "C2->C1 Collision: " << sphere2->CollidesWith(sphere1) << ";" << std::endl;
+			//std::cout << "C1->C2 Collision: " << cube1->CollidesWith(cube2) << ";" << std::endl;
+			//std::cout << "C2->C1 Collision: " << cube2->CollidesWith(cube1) << ";" << std::endl;
 			break;
 		}
 	}
@@ -55,22 +62,26 @@ void CollisionDemoScene::WASD(SDL_Keycode keycode)
 	{
 		case SDLK_w:
 		{
-			cube1->GetTransform()->Translate(AXIS::Z, speed* DeltaTime());
+			sphere1->GetTransform()->Translate(AXIS::Z, speed* DeltaTime());
+			//cube1->GetTransform()->Translate(AXIS::Z, speed* DeltaTime());
 			break;
 		}
 		case SDLK_a:
 		{
-			cube1->GetTransform()->Translate(AXIS::X, (speed)*DeltaTime());
+			sphere1->GetTransform()->Translate(AXIS::X, (speed)*DeltaTime());
+			//cube1->GetTransform()->Translate(AXIS::X, (speed)*DeltaTime());
 			break;
 		}
 		case SDLK_s:
 		{
-			cube1->GetTransform()->Translate(AXIS::Z, (-speed)*DeltaTime());
+			sphere1->GetTransform()->Translate(AXIS::Z, (-speed)*DeltaTime());
+			//cube1->GetTransform()->Translate(AXIS::Z, (-speed)*DeltaTime());
 			break;
 		}
 		case SDLK_d:
 		{
-			cube1->GetTransform()->Translate(AXIS::X, (-speed)*DeltaTime());
+			sphere1->GetTransform()->Translate(AXIS::X, (-speed)*DeltaTime());
+			//cube1->GetTransform()->Translate(AXIS::X, (-speed)*DeltaTime());
 			break;
 		}
 	}

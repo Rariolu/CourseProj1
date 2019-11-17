@@ -9,9 +9,10 @@ class SphereCollider : public Collider
 	public:
 		SphereCollider(Vec3* pos, float r);
 		bool CollidesWith(Collider* other);
+		bool CollidesWith(SphereCollider* other);
 		float GetRadius();
 	private:
-		bool CollidesWith(SphereCollider* other);
+		
 		
 		float radius;
 };

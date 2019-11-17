@@ -3,6 +3,7 @@
 
 #include "Scene.h"
 #include "CollisionCube.h"
+#include "CollisionSphere.h"
 #include <iostream>
 
 class CollisionDemoScene : public Scene
@@ -18,6 +19,8 @@ class CollisionDemoScene : public Scene
 		void WASD(SDL_Keycode keycode);
 		CollisionCube* cube1;
 		CollisionCube* cube2;
+		CollisionSphere* sphere1;
+		CollisionSphere* sphere2;
 		float speed = 50.0f;
 };
 

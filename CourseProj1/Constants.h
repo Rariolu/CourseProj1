@@ -40,7 +40,7 @@ const string collisionDemoScene = "collisionDemo";
 //Window meta
 
 const string windowTitle = "CourseWorkProj";
-const float windowWidth = 1920.0f;
-const float windowHeight = 1080.0f;
+const float windowWidth = 1024.0f;
+const float windowHeight = 768.0f;
 
 #endif

@@ -2,7 +2,7 @@
 
 CollisionCube::CollisionCube() : GameObject(cubeName,shaderName,texture1Name)
 {
-	boxCollider = new BoxCollider(Vec3(1, 1, 1), GetTransform()->GetPosition());
+	boxCollider = new BoxCollider(Vec3(2, 2, 2), GetTransform()->GetPosition());
 }
 
 BoxCollider* CollisionCube::GetBoxCollider()
@@ -12,5 +12,9 @@ BoxCollider* CollisionCube::GetBoxCollider()
 
 bool CollisionCube::CollidesWith(CollisionCube* cube)
 {
+	if (!(IsActive() && cube->IsActive()))
+	{
+		return false;
+	}
 	return boxCollider->CollidesWith(cube->GetBoxCollider());
 }
