@@ -167,9 +167,6 @@
     <ClInclude Include="MutablePoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AbstractShader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="OriginalShader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -207,6 +204,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CollisionSphere.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractShader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
