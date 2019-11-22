@@ -1,8 +1,9 @@
 #include "SphereCollider.h"
 
-SphereCollider::SphereCollider(Vec3* pos, float r) : Collider(COLLIDERTYPE::SPHERE, pos)
+SphereCollider::SphereCollider(Vec3* pos, float r, bool isDefaultRadius) : Collider(COLLIDERTYPE::SPHERE, pos)
 {
 	radius = r;
+	defaultRadius = isDefaultRadius ? r : 1.0f;
 }
 
 bool SphereCollider::CollidesWith(Collider* other)
@@ -29,4 +30,15 @@ bool SphereCollider::CollidesWith(SphereCollider* other)
 float SphereCollider::GetRadius()
 {
 	return radius;
+}
+
+void SphereCollider::ApplyScale(Vec3 scale)
+{
+	float minScale = min(scale.x, min(scale.y, scale.z));
+	radius = minScale * defaultRadius;
+}
+
+SphereCollider SphereCollider::operator*(float m)
+{
+	return SphereCollider(GetPositionPointer(), radius * m);
 }

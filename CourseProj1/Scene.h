@@ -40,6 +40,8 @@ class Scene
 		//frame and the current one.
 		void GenerateDeltaTime();
 
+		void RemoveGameObject(GameObject* gameObject);
+
 		//Designate the next scene to be loaded.
 		void SetNextScene(string scenename);
 

@@ -18,6 +18,8 @@ class Collider
 	public:
 		Collider(COLLIDERTYPE type, Vec3* pos);
 
+		virtual void ApplyScale(Vec3 scale) = 0;
+
 		//Returns true if a collision occurs between
 		//this collider instance and the one given.
 		//Left abstract because the nature of collision
@@ -29,6 +31,10 @@ class Collider
 		
 		//Get the value of the collider's current position.
 		Vec3 GetPosition();
+
+		
+	protected:
+		Vec3* GetPositionPointer();
 	private:
 		//The collider type of this particular
 		//instance.

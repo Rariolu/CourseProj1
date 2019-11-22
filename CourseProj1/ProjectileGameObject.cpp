@@ -4,12 +4,23 @@ ProjectileGameObject::ProjectileGameObject() : GameObject(ballMeshName, shaderNa
 {
 	position = GetTransform()->GetPosition();
 	const float ballScale = 0.05f;
-	SetScale(Vec3(ballScale, ballScale, ballScale));
+	SetScale(ballScale);
 }
 
 void ProjectileGameObject::SetDirection(Vec3 dir)
 {
 	direction = dir;
+}
+
+void ProjectileGameObject::SetScale(float scale)
+{
+	GameObject::SetScale(Vec3(scale, scale, scale));
+	if (sphereCollider)
+	{
+		delete sphereCollider;
+	}
+	sphereCollider = new SphereCollider(position, scale);
+	SetCollider(sphereCollider);
 }
 
 void ProjectileGameObject::Update(float delta)

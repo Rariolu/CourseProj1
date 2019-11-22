@@ -11,7 +11,7 @@ class CollisionCube : public GameObject
 	public:
 		CollisionCube();
 		BoxCollider* GetBoxCollider();
-		bool CollidesWith(CollisionCube* cube);
+		//bool CollidesWith(CollisionCube* cube);
 	private:
 		BoxCollider* boxCollider;
 

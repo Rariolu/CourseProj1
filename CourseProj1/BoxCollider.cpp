@@ -11,6 +11,11 @@ BoxCollider::BoxCollider(Box* box, Vec3* pos) : Collider(COLLIDERTYPE::BOX, pos)
 	boundBox->SetPosition(pos);
 }
 
+void BoxCollider::ApplyScale(Vec3 scale)
+{
+
+}
+
 Box* BoxCollider::BoundBox()
 {
 	return boundBox;
@@ -45,17 +50,14 @@ bool BoxCollider::CollidesWith(BoxCollider* other)
 
 bool BoxCollider::CollidesWith(SphereCollider* other)
 {
-	Vec3* corners = boundBox->Corners();
-	Vec3 pos = GetPosition();
+	Vec3 oPos = other->GetPosition();
+	float x = max(boundBox->minX(), min(oPos.x, boundBox->maxX()));
+	float y = max(boundBox->minY(), min(oPos.y, boundBox->maxY()));
+	float z = max(boundBox->minZ(), min(oPos.z, boundBox->maxZ()));
+
+	//Determine the square distance between the sphere's centre and the point.
+	float d2 = SquareValue(x - oPos.x) + SquareValue(y - oPos.y) + SquareValue(z - oPos.z);
+	//Get the sphere's radius and square it.
 	float r2 = SquareValue(other->GetRadius());
-	for (unsigned int i = 0; i < Box::CornerNo; i++)
-	{
-		Vec3 corner = corners[i];
-		float d2 = SquareValue(pos.x - corner.x) + SquareValue(pos.y - corner.y) + SquareValue(pos.z - corner.z);
-		if (d2 <= r2)
-		{
-			return true;
-		}
-	}
-	return false;
+	return d2 <= r2;
 }

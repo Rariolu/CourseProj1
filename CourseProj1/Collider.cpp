@@ -15,3 +15,8 @@ Vec3 Collider::GetPosition()
 {
 	return *position;
 }
+
+Vec3* Collider::GetPositionPointer()
+{
+	return position;
+}

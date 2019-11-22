@@ -19,6 +19,29 @@ GameObject::~GameObject()
 	delete transform;
 }
 
+bool GameObject::CollidesWith(GameObject* other)
+{
+	if (!other || !collider)
+	{
+		return false;
+	}
+	if (!(IsActive() && other->IsActive()))
+	{
+		return false;
+	}
+	Collider* otherCollider = other->GetCollider();
+	if (!otherCollider)
+	{
+		return false;
+	}
+	return collider->CollidesWith(otherCollider) || otherCollider->CollidesWith(collider);
+}
+
+Collider* GameObject::GetCollider()
+{
+	return collider;
+}
+
 Transform* GameObject::GetTransform()
 {
 	return transform;
@@ -58,4 +81,9 @@ void GameObject::SetRotation(Vec3 rotation)
 void GameObject::SetScale(Vec3 scale)
 {
 	transform->SetScale(scale);
+}
+
+void GameObject::SetCollider(Collider* col)
+{
+	collider = col;
 }

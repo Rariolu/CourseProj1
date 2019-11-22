@@ -75,6 +75,21 @@ void Scene::GenerateDeltaTime()
 	deltaTime = milliseconds;
 }
 
+void Scene::RemoveGameObject(GameObject* gameObject)
+{
+	if (gameObjects.size() > 0)
+	{
+		for (vector<GameObject*>::iterator i = gameObjects.begin(); i < gameObjects.end(); i++)
+		{
+			if (gameObject == (*i))
+			{
+				gameObjects.erase(i);
+				break;
+			}
+		}
+	}
+}
+
 void Scene::SetNextScene(string scenename)
 {
 	nextScene = scenename;

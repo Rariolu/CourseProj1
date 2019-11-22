@@ -17,11 +17,13 @@ class CollisionDemoScene : public Scene
 		bool MouseDown(SDL_MouseButtonEvent mousebutton);
 		bool Update();
 		void WASD(SDL_Keycode keycode);
+		void Fire();
 		CollisionCube* cube1;
-		CollisionCube* cube2;
-		CollisionSphere* sphere1;
-		CollisionSphere* sphere2;
+		//CollisionCube* cube2;
+		//CollisionSphere* sphere1;
+		//CollisionSphere* sphere2;
 		float speed = 50.0f;
+		vector<ProjectileGameObject*> projectiles;
 };
 
 #endif
