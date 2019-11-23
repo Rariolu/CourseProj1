@@ -31,10 +31,10 @@ class Collider
 		
 		//Get the value of the collider's current position.
 		Vec3 GetPosition();
-
 		
 	protected:
 		Vec3* GetPositionPointer();
+
 	private:
 		//The collider type of this particular
 		//instance.

@@ -18,6 +18,7 @@ class CollisionDemoScene : public Scene
 		bool Update();
 		void WASD(SDL_Keycode keycode);
 		void Fire();
+		void DestroyProjectile(ProjectileGameObject* ball);
 		CollisionCube* cube1;
 		//CollisionCube* cube2;
 		//CollisionSphere* sphere1;

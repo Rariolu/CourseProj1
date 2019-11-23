@@ -60,7 +60,7 @@ bool ProjectileScene::Update()
 		{
 			ball->Update(DeltaTime());
 			const float maxD = 4.0f;
-			float d = glm::distance(*ball->GetTransform()->GetPosition(), *camera->GetPosition());
+			float d = glm::distance(*ball->/*GetTransform()->*/GetPosition(), *camera->GetPosition());
 			if (d >= maxD)
 			{
 				ball->SetActive(false);
@@ -74,25 +74,25 @@ void ProjectileScene::WASD(SDL_Keycode keycode)
 {
 	switch (keycode)
 	{
-	case SDLK_w:
-	{
-		camera->Translate(AXIS::Z, speed * DeltaTime());
-		break;
-	}
-	case SDLK_a:
-	{
-		camera->Translate(AXIS::X, speed * DeltaTime());
-		break;
-	}
-	case SDLK_s:
-	{
-		camera->Translate(AXIS::Z, -speed * DeltaTime());
-		break;
-	}
-	case SDLK_d:
-	{
-		camera->Translate(AXIS::X, -speed * DeltaTime());
-		break;
-	}
+		case SDLK_w:
+		{
+			camera->Translate(AXIS::Z, speed * DeltaTime());
+			break;
+		}
+		case SDLK_a:
+		{
+			camera->Translate(AXIS::X, speed * DeltaTime());
+			break;
+		}
+		case SDLK_s:
+		{
+			camera->Translate(AXIS::Z, -speed * DeltaTime());
+			break;
+		}
+		case SDLK_d:
+		{
+			camera->Translate(AXIS::X, -speed * DeltaTime());
+			break;
+		}
 	}
 }

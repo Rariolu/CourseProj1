@@ -58,6 +58,22 @@ void CollisionDemoScene::Fire()
 	projectiles.push_back(ball);
 }
 
+void CollisionDemoScene::DestroyProjectile(ProjectileGameObject* ball)
+{
+	if (projectiles.size() > 0)
+	{
+		for (vector<ProjectileGameObject*>::iterator i = projectiles.begin(); i < projectiles.end(); i++)
+		{
+			if (ball == (*i))
+			{
+				RemoveGameObject(ball);
+				projectiles.erase(i);
+				break;
+			}
+		}
+	}
+}
+
 bool CollisionDemoScene::MouseDown(SDL_MouseButtonEvent mouseButton)
 {
 	return true;
@@ -70,7 +86,7 @@ bool CollisionDemoScene::Update()
 		ball->Update(DeltaTime());
 		if (ball->CollidesWith(cube1))
 		{
-			//return false;
+			return false;
 		}
 	}
 	return true;

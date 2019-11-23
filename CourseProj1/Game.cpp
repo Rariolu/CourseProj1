@@ -50,7 +50,6 @@ void Game::ResourceSetup()
 	resourceManager->AddModelTexture(texture2Name, texture2);
 
 	//Add meshes
-
 	SetupMesh(cubeName, mesh1File);
 	SetupMesh(mesh2Name, mesh2File);
 	SetupMesh(ballMeshName, ballMeshFile);
@@ -58,13 +57,10 @@ void Game::ResourceSetup()
 	//Shaders
 	OriginalShader* shader1 = new OriginalShader(shaderFile);
 	//resourceManager->AddShader(shaderName, shader1);
-	
 	DoubleUniformShader* shader2 = new DoubleUniformShader(alternateShaderFile);
 	//resourceManager->AddShader(shaderName, shader2);
-
 	QuadrupleUniformShader* shader3 = new QuadrupleUniformShader(alternateShaderFile2);
 	//resourceManager->AddShader(shaderName, shader3);
-
 	QuadMShader* shader4 = new QuadMShader(quadMShaderFile);
 	resourceManager->AddShader(shaderName, shader4);
 

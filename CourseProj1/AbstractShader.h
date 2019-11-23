@@ -25,10 +25,13 @@ class AbstractShader
 		//Update the program's "uniform" values using information
 		//from the transform and the camera.
 		virtual void Update(Transform* transform, Camera* camera) = 0;
+
 	protected:
 		//Return the address of the executable program.
 		GLuint GetProgram();
+
 	private:
+
 		//Create an openGL shader from the given text and type
 		//before returning its address.
 		GLuint CreateShader(string text, unsigned int type);

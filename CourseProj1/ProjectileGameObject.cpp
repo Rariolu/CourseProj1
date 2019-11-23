@@ -2,7 +2,7 @@
 
 ProjectileGameObject::ProjectileGameObject() : GameObject(ballMeshName, shaderName, texture2Name)
 {
-	position = GetTransform()->GetPosition();
+	position = /*GetTransform()->*/GetPosition();
 	const float ballScale = 0.05f;
 	SetScale(ballScale);
 }

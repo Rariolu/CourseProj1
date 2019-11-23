@@ -95,6 +95,6 @@ bool Demo::Update()
 {
 	float d = DeltaTime();
 	float r = rSpeed * d;
-	obj->GetTransform()->Rotate(axis, r);
+	obj->/*GetTransform()->*/Rotate(axis, r);
 	return true;
 }

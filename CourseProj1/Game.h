@@ -20,12 +20,13 @@ class Game
 {
 	public:
 		static Game* Instance();
+		~Game();
 		int CreateWindow(string windowTitle, float width, float height);
 		void Dispose();
 
 	private:
 		Game();
-		~Game();
+		
 		void ResourceSetup();
 		void SetupMesh(string name, string objfile);
 		void Run(string startScene);

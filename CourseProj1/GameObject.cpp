@@ -16,7 +16,7 @@ GameObject::GameObject(Mesh* mesh, AbstractShader* shader, ModelTexture* texture
 
 GameObject::~GameObject()
 {
-	delete transform;
+	//delete transform;
 }
 
 bool GameObject::CollidesWith(GameObject* other)
@@ -42,10 +42,10 @@ Collider* GameObject::GetCollider()
 	return collider;
 }
 
-Transform* GameObject::GetTransform()
-{
-	return transform;
-}
+//Transform* GameObject::GetTransform()
+//{
+//	return transform;
+//}
 
 bool GameObject::IsActive()
 {
@@ -57,7 +57,7 @@ void GameObject::Render(Camera* camera)
 	if (isActive)
 	{
 		shader->Bind();
-		shader->Update(transform, camera);
+		shader->Update((Transform*)this, camera);
 		texture->Bind();
 		mesh->Render();
 	}
@@ -67,21 +67,21 @@ void GameObject::SetActive(bool active)
 {
 	isActive = active;
 }
-
-void GameObject::SetPosition(Vec3 position)
-{
-	transform->SetPosition(position);
-}
-
-void GameObject::SetRotation(Vec3 rotation)
-{
-	transform->SetRotation(rotation);
-}
-
-void GameObject::SetScale(Vec3 scale)
-{
-	transform->SetScale(scale);
-}
+//
+//void GameObject::SetPosition(Vec3 position)
+//{
+//	transform->SetPosition(position);
+//}
+//
+//void GameObject::SetRotation(Vec3 rotation)
+//{
+//	transform->SetRotation(rotation);
+//}
+//
+//void GameObject::SetScale(Vec3 scale)
+//{
+//	transform->SetScale(scale);
+//}
 
 void GameObject::SetCollider(Collider* col)
 {

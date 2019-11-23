@@ -2,7 +2,7 @@
 
 CollisionCube::CollisionCube() : GameObject(cubeName,shaderName,texture1Name)
 {
-	boxCollider = new BoxCollider(Vec3(2, 2, 2), GetTransform()->GetPosition());
+	boxCollider = new BoxCollider(Vec3(2, 2, 2), /*GetTransform()->*/GetPosition());
 	SetCollider(boxCollider);
 }
 

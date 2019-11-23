@@ -8,6 +8,11 @@
 class SDLWindowManager
 {
 	public:
+		//Destroy this instance of "SDLWindowManager",
+		//deleting the openGL context and the sdl window
+		//in the process.
+		~SDLWindowManager();
+		
 		//Attempt to create and initialse an SDL window and return true if
 		//it succeeds (and return false if it fails). Output the created 
 		//instance of "SDLWindowManager".
@@ -37,10 +42,7 @@ class SDLWindowManager
 		//"Instance" method).
 		SDLWindowManager();
 
-		//Destroy this instance of "SDLWindowManager",
-		//deleting the openGL context and the sdl window
-		//in the process.
-		~SDLWindowManager();
+
 
 		//Attempt to create and initialse an SDL window and return true if
 		//it succeeds (and return false if it fails).
@@ -48,7 +50,7 @@ class SDLWindowManager
 		
 		//A pointer to the current instance of "SDLWindowManager".
 		static SDLWindowManager* instance;
-
+		int i = 4;
 		//The height of the window.
 		float screenHeight;
 		

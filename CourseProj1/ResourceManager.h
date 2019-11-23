@@ -19,7 +19,7 @@ class ResourceManager
 		void AddMesh(string name, Mesh* Mesh);
 		void AddModelTexture(string name, ModelTexture* modelTexture);
 		void AddScene(string name, Scene* Scene);
-		void AddShader(string name, AbstractShader* Shader);
+		void AddShader(string name, AbstractShader* shader);
 		Mesh* GetMesh(string name);
 		ModelTexture* GetModelTexture(string name);
 		Scene* GetScene(string name);
