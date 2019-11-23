@@ -52,12 +52,12 @@ bool GameObject::IsActive()
 	return isActive;
 }
 
-void GameObject::Render(Camera* camera)
+void GameObject::Render()
 {
-	if (isActive)
+	if (isActive && camera)
 	{
 		shader->Bind();
-		shader->Update((Transform*)this, camera);
+		shader->Update(this, camera);
 		texture->Bind();
 		mesh->Render();
 	}
@@ -66,6 +66,11 @@ void GameObject::Render(Camera* camera)
 void GameObject::SetActive(bool active)
 {
 	isActive = active;
+}
+
+void GameObject::SetCamera(Camera* cam)
+{
+	camera = cam;
 }
 //
 //void GameObject::SetPosition(Vec3 position)

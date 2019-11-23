@@ -25,14 +25,16 @@ class GameObject : public Transform
 
 		//Bind the relevant mesh, shader, and texture
 		//in order to render this model to the screen.
-		void Render(Camera* camera);
+		void Render();
 		void SetActive(bool active);
+		void SetCamera(Camera* cam);
 		//virtual void SetPosition(Vec3 position);
 		//virtual void SetRotation(Vec3 rotation);
 		//virtual void SetScale(Vec3 scale);
 	protected:
 		void SetCollider(Collider* col);
 	private:
+		Camera* camera;
 		bool isActive = true;
 		Collider* collider;
 		Mesh* mesh;
