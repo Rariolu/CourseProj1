@@ -16,9 +16,10 @@ class GameObject : public Transform
 		//Detects a collision between two GameObjects
 		//using their colliders.
 		bool CollidesWith(GameObject* other);
+
+		//Get the collider that's attached to this gameobject.
 		Collider* GetCollider();
 
-		//Transform* GetTransform();
 		//Returns true if this GameObject is "active"
 		//(meaning it is visible and can be collided with).
 		bool IsActive();
@@ -26,12 +27,18 @@ class GameObject : public Transform
 		//Bind the relevant mesh, shader, and texture
 		//in order to render this model to the screen.
 		void Render();
+		
+		//Set the active state of this gameobject
+		//(when it's active, it is rendered and
+		//can be collided with).
 		void SetActive(bool active);
+
+		//Set the camera that's used to render this gameobject.
 		void SetCamera(Camera* cam);
-		//virtual void SetPosition(Vec3 position);
-		//virtual void SetRotation(Vec3 rotation);
-		//virtual void SetScale(Vec3 scale);
 	protected:
+
+		//Set the collider that's used to determine
+		//collisions for this gameobject.
 		void SetCollider(Collider* col);
 	private:
 		Camera* camera;
