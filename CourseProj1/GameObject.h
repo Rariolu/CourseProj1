@@ -38,16 +38,22 @@ class GameObject : public Transform
 	protected:
 
 		//Set the collider that's used to determine
-		//collisions for this gameobject.
+		//collisions with other gameobjects.
 		void SetCollider(Collider* col);
 	private:
+		//The camera that's used to render this gameobject.
 		Camera* camera;
+
+		//The active state of this gameobject.
 		bool isActive = true;
+
+		//The collider that's used to determine
+		//collisions with other gameobjects.
 		Collider* collider;
+
 		Mesh* mesh;
 		AbstractShader* shader;
 		ModelTexture* texture;
-		//Transform* transform = new Transform();
 		static ResourceManager* rescManager;
 };
 
