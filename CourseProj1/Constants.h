@@ -33,8 +33,8 @@ const string quadMShaderFile = "..\\Resources\\quadMShader";
 
 //Scenes
 
-const string demoScene = "demoScene";
-const string projectileScene = "projectileScene";
+//const string demoScene = "demoScene";
+//const string projectileScene = "projectileScene";
 const string collisionDemoScene = "collisionDemo";
 
 //Window meta

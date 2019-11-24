@@ -65,8 +65,8 @@ void Game::ResourceSetup()
 	resourceManager->AddShader(shaderName, shader4);
 
 	//Add scenes
-	resourceManager->AddScene(demoScene, new Demo());
-	resourceManager->AddScene(projectileScene, new ProjectileScene());
+	//resourceManager->AddScene(demoScene, new Demo());
+	//resourceManager->AddScene(projectileScene, new ProjectileScene());
 	resourceManager->AddScene(collisionDemoScene, new CollisionDemoScene());
 }
 
