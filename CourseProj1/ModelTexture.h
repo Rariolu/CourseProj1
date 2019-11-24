@@ -13,7 +13,6 @@ class ModelTexture
 		ModelTexture(string filename);
 		~ModelTexture();
 		void Bind();
-		void SetTextureIndex(unsigned int unit);
 	private:
 		unsigned int thisUnit = 0;
 		GLuint textureHandler;

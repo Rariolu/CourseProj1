@@ -38,8 +38,3 @@ void ModelTexture::Bind()
 	glActiveTexture(GL_TEXTURE0 + thisUnit);
 	glBindTexture(GL_TEXTURE_2D, textureHandler);
 }
-
-void ModelTexture::SetTextureIndex(unsigned int unit)
-{
-	thisUnit = unit;
-}
