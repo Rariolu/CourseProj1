@@ -59,6 +59,7 @@ GameObject* Scene::AddGameObject(Mesh* mesh, ModelTexture* texture, AbstractShad
 
 void Scene::AddGameObject(GameObject* gameObject)
 {
+	gameObject->SetCamera(camera);
 	gameObjects.push_back(gameObject);
 }
 
@@ -141,7 +142,7 @@ void Scene::Render()
 	{
 		if (go->IsActive())
 		{
-			go->Render(camera);
+			go->Render();
 		}
 	}
 	glEnableClientState(GL_COLOR_ARRAY);
