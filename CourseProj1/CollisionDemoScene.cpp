@@ -86,7 +86,9 @@ bool CollisionDemoScene::Update()
 		ball->Update(DeltaTime());
 		if (ball->CollidesWith(cube1))
 		{
-			return false;
+			RemoveGameObject(cube1);
+			RemoveGameObject(ball);
+			//return false;
 		}
 	}
 	return true;
