@@ -5,6 +5,7 @@
 #include "Aliases.h"
 #include "GameObject.h"
 #include "SDLWindowManager.h"
+#include "AudioDevice.h"
 
 class Scene
 {
@@ -48,6 +49,8 @@ class Scene
 		//The camera that's used to render the gameobjects
 		//from a particular perspective.
 		Camera* camera;
+
+		AudioDevice* audioDevice;
 	private:
 
 		//Process the user's input and return true if

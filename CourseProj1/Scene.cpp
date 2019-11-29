@@ -4,6 +4,7 @@ Scene::Scene()
 {
 	SDLWindowManager* sdlwindowmanager = SDLWindowManager::Instance();
 	camera = new Camera(70.0f, sdlwindowmanager->GetScreenWidth() / sdlwindowmanager->GetScreenHeight(), 0.01f, 1000.0f);
+	audioDevice = AudioDevice::Instance();
 }
 
 Scene::~Scene()
@@ -25,6 +26,7 @@ void Scene::Dispose()
 void Scene::Initialise()
 {
 	initialised = true;
+	audioDevice->SetListener(camera);
 }
 
 string Scene::Run()

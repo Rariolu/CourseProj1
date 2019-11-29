@@ -25,6 +25,8 @@ class CollisionDemoScene : public Scene
 		//CollisionSphere* sphere2;
 		float speed = 50.0f;
 		vector<ProjectileGameObject*> projectiles;
+		unsigned int shotSource;
+		unsigned int bluesiSource;
 };
 
 #endif

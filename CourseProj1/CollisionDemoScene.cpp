@@ -8,6 +8,7 @@ CollisionDemoScene::CollisionDemoScene()
 void CollisionDemoScene::Dispose()
 {
 	Scene::Dispose();
+	audioDevice->StopSound(bluesiSource);
 }
 
 void CollisionDemoScene::Initialise()
@@ -22,6 +23,9 @@ void CollisionDemoScene::Initialise()
 	//AddGameObject(cube2);
 	//AddGameObject(sphere1);
 	//AddGameObject(sphere2);
+	shotSource = audioDevice->LoadSound("..\\Resources\\EnemyShot2.wav");
+	bluesiSource = audioDevice->LoadSound("..\\Resources\\Bluesi.wav");
+	audioDevice->PlaySound(bluesiSource);
 }
 
 bool CollisionDemoScene::KeyDown(SDL_Keycode keycode)
@@ -86,8 +90,10 @@ bool CollisionDemoScene::Update()
 		ball->Update(DeltaTime());
 		if (ball->CollidesWith(cube1))
 		{
+			cube1->SetActive(false);
 			RemoveGameObject(cube1);
 			RemoveGameObject(ball);
+			audioDevice->PlaySound(shotSource,*ball->GetPosition());
 			//return false;
 		}
 	}
