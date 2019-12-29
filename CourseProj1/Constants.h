@@ -25,16 +25,10 @@ const string ballMeshFile = "..\\Resources\\ball.obj";
 //Shaders
 
 const string shaderName = "shader1";
-const string shaderFile = "..\\Resources\\shader";
-//const string alternateShaderName = "alternateShader";
-const string alternateShaderFile = "..\\Resources\\gpuTransTest";
-const string alternateShaderFile2 = "..\\Resources\\gpuTransTest2";
 const string quadMShaderFile = "..\\Resources\\quadMShader";
 
 //Scenes
 
-//const string demoScene = "demoScene";
-//const string projectileScene = "projectileScene";
 const string collisionDemoScene = "collisionDemo";
 
 //Window meta

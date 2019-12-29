@@ -2,7 +2,9 @@
 
 Game* game = Game::Instance();
 
-int main(int argc, char** argv)
+#undef main
+
+int main()
 {
 	return game->CreateWindow(windowTitle, windowWidth, windowHeight);
 }

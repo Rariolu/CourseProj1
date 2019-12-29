@@ -5,6 +5,7 @@ Game* Game::instance = nullptr;
 Game::Game()
 {
 	resourceManager = ResourceManager::Instance();
+	windowManager = nullptr;
 }
 
 Game::~Game()
@@ -29,8 +30,6 @@ int Game::CreateWindow(string windowTitle, float width, float height)
 		return -1;
 	}
 	ResourceSetup();
-	//Run(demoScene);
-	//Run(projectileScene);
 	Run(collisionDemoScene);
 	return 0;
 }
@@ -55,26 +54,19 @@ void Game::ResourceSetup()
 	SetupMesh(ballMeshName, ballMeshFile);
 
 	//Shaders
-	OriginalShader* shader1 = new OriginalShader(shaderFile);
-	//resourceManager->AddShader(shaderName, shader1);
-	DoubleUniformShader* shader2 = new DoubleUniformShader(alternateShaderFile);
-	//resourceManager->AddShader(shaderName, shader2);
-	QuadrupleUniformShader* shader3 = new QuadrupleUniformShader(alternateShaderFile2);
-	//resourceManager->AddShader(shaderName, shader3);
 	QuadMShader* shader4 = new QuadMShader(quadMShaderFile);
 	resourceManager->AddShader(shaderName, shader4);
 
 	//Add scenes
-	//resourceManager->AddScene(demoScene, new Demo());
-	//resourceManager->AddScene(projectileScene, new ProjectileScene());
 	resourceManager->AddScene(collisionDemoScene, new CollisionDemoScene());
 }
 
 void Game::SetupMesh(string name, string objfile)
 {
-	//if (LoadOBJ(mesh1File, mesh1))
+	//Mesh* mesh1 = nullptr;
+	//if (LoadOBJ(objfile, mesh1))
 	//{
-	//	resourceManager->AddMesh(mesh1Name, mesh1);
+	//	resourceManager->AddMesh(name, mesh1);
 	//}
 	OBJModel model(objfile);
 	ObjIndexedModel imodel = model.ToIndexedModel();

@@ -5,11 +5,18 @@
 #include <alc.h>
 #include "Camera.h"
 
+//Establishes a connection to the primary audio device
+//and allows audio to be played using it.
 class AudioDevice
 {
+	//Represents a particular instantiation of an
+	//an audio file (uniquely identified by the "bufferID"
+	//(the ID of the audio itself) and the "sourceID" (the
+	//ID of the particular in-world source).
 	struct SoundData
 	{
-		int sourceID, bufferID;
+		int bufferID;
+		int sourceID;
 		const char* filename;
 		SoundData(unsigned int sI, unsigned int bI, const char* n)
 		{
@@ -30,14 +37,13 @@ class AudioDevice
 		AudioDevice();
 		int ConvertToInt(char* buffer, int length);
 		void DeleteSound(unsigned int id);
-		bool IsBigEndian();
 		char* LoadWave(const char* filename, int& channel, int& samplerate, int& bps, int& size);
+		void SetIsBigEndian();
 		static AudioDevice* instance;
 		ALCcontext* context;
 		ALCdevice* device;
 		vector<SoundData> datas;
-
-
+		bool isBigEndian;
 };
 
 #endif

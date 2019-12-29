@@ -66,9 +66,6 @@
     <ClCompile Include="AbstractShader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="OriginalShader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DoubleUniformShader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -156,12 +153,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MutablePoint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OriginalShader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DoubleUniformShader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="QuadrupleUniformShader.h">

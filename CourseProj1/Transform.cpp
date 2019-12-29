@@ -47,16 +47,6 @@ void Transform::Rotate(AXIS axis, float r)
 	}
 }
 
-//void Transform::SetPosition(float x, float y, float z)
-//{
-//	SetPosition(Vec3(x, y, z));
-//}
-//
-//void Transform::SetPosition(Vec3 position)
-//{
-//	this->position = position;
-//}
-
 void Transform::SetRotation(float x, float y, float z)
 {
 	SetRotation(Vec3(x, y, z));

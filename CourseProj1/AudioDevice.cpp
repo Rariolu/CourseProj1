@@ -15,6 +15,7 @@ AudioDevice::AudioDevice()
 		//error message
 	}
 	alcMakeContextCurrent(context);
+	SetIsBigEndian();
 }
 
 AudioDevice::~AudioDevice()
@@ -123,7 +124,7 @@ void AudioDevice::StopSound(unsigned int id)
 int AudioDevice::ConvertToInt(char* buffer, int length)
 {
 	int a = 0;
-	if (IsBigEndian())
+	if (isBigEndian)
 	{
 		for (int i = 0; i < length; i++)
 		{
@@ -145,10 +146,10 @@ void AudioDevice::DeleteSound(unsigned int id)
 	alDeleteBuffers(1, (unsigned int*)& id);
 }
 
-bool AudioDevice::IsBigEndian()
+void AudioDevice::SetIsBigEndian()
 {
 	int a = 1;
-	return !((char*)& a)[0];
+	isBigEndian = !((char*)&a)[0];
 }
 
 char* AudioDevice::LoadWave(const char* filename, int& channel, int& samplerate, int& bps, int& size)

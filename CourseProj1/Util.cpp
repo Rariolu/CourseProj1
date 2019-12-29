@@ -18,6 +18,11 @@ string LoadText(string filename)
 	return output;
 }
 
+int RandomNumber(int min, int max)
+{
+	return min + (rand() % (max - min + 1));
+}
+
 float SquareValue(float value)
 {
 	return value * value;

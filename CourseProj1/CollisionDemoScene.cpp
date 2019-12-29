@@ -15,14 +15,8 @@ void CollisionDemoScene::Initialise()
 {
 	Scene::Initialise();
 	camera->SetPosition(Vec3(0, 0, -5.0f));
-	cube1 = new CollisionCube();
-	//cube2 = new CollisionCube();
-	//sphere1 = new CollisionSphere();
-	//sphere2 = new CollisionSphere();
-	AddGameObject(cube1);
-	//AddGameObject(cube2);
-	//AddGameObject(sphere1);
-	//AddGameObject(sphere2);
+	//cube1 = new CollisionCube();
+	//AddGameObject(cube1);
 	shotSource = audioDevice->LoadSound("..\\Resources\\EnemyShot2.wav");
 	bluesiSource = audioDevice->LoadSound("..\\Resources\\Bluesi.wav");
 	audioDevice->PlaySound(bluesiSource);
@@ -30,7 +24,7 @@ void CollisionDemoScene::Initialise()
 
 bool CollisionDemoScene::KeyDown(SDL_Keycode keycode)
 {
-	//WASD(keycode);
+	WASD(keycode);
 	switch (keycode)
 	{
 		case SDLK_ESCAPE:
@@ -40,10 +34,6 @@ bool CollisionDemoScene::KeyDown(SDL_Keycode keycode)
 		case SDLK_SPACE:
 		{
 			Fire();
-			//std::cout << "C1->C2 Collision: " << sphere1->CollidesWith(sphere2) << ";" << std::endl;
-			//std::cout << "C2->C1 Collision: " << sphere2->CollidesWith(sphere1) << ";" << std::endl;
-			//std::cout << "C1->C2 Collision: " << cube1->CollidesWith(cube2) << ";" << std::endl;
-			//std::cout << "C2->C1 Collision: " << cube2->CollidesWith(cube1) << ";" << std::endl;
 			break;
 		}
 	}
@@ -78,6 +68,22 @@ void CollisionDemoScene::DestroyProjectile(ProjectileGameObject* ball)
 	}
 }
 
+void CollisionDemoScene::DestroyCube(CollisionCube* cube)
+{
+	if (cubes.size() > 0)
+	{
+		for (vector<CollisionCube*>::iterator i = cubes.begin(); i < cubes.end(); i++)
+		{
+			if (cube == (*i))
+			{
+				RemoveGameObject(cube);
+				cubes.erase(i);
+				break;
+			}
+		}
+	}
+}
+
 bool CollisionDemoScene::MouseDown(SDL_MouseButtonEvent mouseButton)
 {
 	return true;
@@ -85,48 +91,71 @@ bool CollisionDemoScene::MouseDown(SDL_MouseButtonEvent mouseButton)
 
 bool CollisionDemoScene::Update()
 {
+	vector<ProjectileGameObject*> destroyedBalls;
+	vector<CollisionCube*> destroyedCubes;
 	for (ProjectileGameObject* ball : projectiles)
 	{
 		ball->Update(DeltaTime());
-		if (ball->CollidesWith(cube1))
+		for (CollisionCube* cube : cubes)
 		{
-			cube1->SetActive(false);
-			RemoveGameObject(cube1);
-			RemoveGameObject(ball);
-			audioDevice->PlaySound(shotSource,*ball->GetPosition());
-			//return false;
+			if (ball->CollidesWith(cube))
+			{
+				cube->SetActive(false);
+				//RemoveGameObject(cube);
+				destroyedCubes.push_back(cube);
+				//RemoveGameObject(ball);
+				destroyedBalls.push_back(ball);
+				audioDevice->PlaySound(shotSource, *ball->GetPosition());
+			}
 		}
+	}
+	for (ProjectileGameObject* ball : destroyedBalls)
+	{
+		DestroyProjectile(ball);
+	}
+	for (CollisionCube* cube : destroyedCubes)
+	{
+		DestroyCube(cube);
+	}
+	if (RandomNumber(0, 150) == 0)
+	{
+		CreateCube();
 	}
 	return true;
 }
 
+void CollisionDemoScene::CreateCube()
+{
+	CollisionCube* cube = new CollisionCube();
+	cube->SetPosition(RandomNumber(-5, 5), 0, RandomNumber(8, 12));
+	cubes.push_back(cube);
+	AddGameObject(cube);
+}
+
 void CollisionDemoScene::WASD(SDL_Keycode keycode)
 {
+	float dts = DeltaTime()* speed;
 	switch (keycode)
 	{
-		//case SDLK_w:
-		//{
-		//	sphere1->GetTransform()->Translate(AXIS::Z, speed* DeltaTime());
-		//	//cube1->GetTransform()->Translate(AXIS::Z, speed* DeltaTime());
-		//	break;
-		//}
-		//case SDLK_a:
-		//{
-		//	sphere1->GetTransform()->Translate(AXIS::X, (speed)*DeltaTime());
-		//	//cube1->GetTransform()->Translate(AXIS::X, (speed)*DeltaTime());
-		//	break;
-		//}
-		//case SDLK_s:
-		//{
-		//	sphere1->GetTransform()->Translate(AXIS::Z, (-speed)*DeltaTime());
-		//	//cube1->GetTransform()->Translate(AXIS::Z, (-speed)*DeltaTime());
-		//	break;
-		//}
-		//case SDLK_d:
-		//{
-		//	sphere1->GetTransform()->Translate(AXIS::X, (-speed)*DeltaTime());
-		//	//cube1->GetTransform()->Translate(AXIS::X, (-speed)*DeltaTime());
-		//	break;
-		//}
+		case SDLK_w:
+		{
+			camera->Translate(AXIS::Z, dts);
+			break;
+		}
+		case SDLK_a:
+		{
+			camera->Translate(AXIS::X, dts);
+			break;
+		}
+		case SDLK_s:
+		{
+			camera->Translate(AXIS::Z,-dts);
+			break;
+		}
+		case SDLK_d:
+		{
+			camera->Translate(AXIS::X, -dts);
+			break;
+		}
 	}
 }

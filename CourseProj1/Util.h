@@ -20,6 +20,9 @@ T min(T a, T b)
 	return a < b ? a : b;
 }
 
+//Returns a random number within the given range.
+int RandomNumber(int min, int max);
+
 //Multiply the given value by itself and return the result.
 float SquareValue(float value);
 

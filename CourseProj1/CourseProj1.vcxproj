@@ -150,7 +150,6 @@ xcopy /Y "$(SolutionDir)Dependencies\AL\lib\*.dll" "$(OutDir)"</Command>
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="ModelTexture.cpp" />
     <ClCompile Include="MutablePoint.cpp" />
-    <ClCompile Include="OriginalShader.cpp" />
     <ClCompile Include="program.cpp" />
     <ClCompile Include="ProjectileGameObject.cpp" />
     <ClCompile Include="QuadMShader.cpp" />
@@ -176,14 +175,12 @@ xcopy /Y "$(SolutionDir)Dependencies\AL\lib\*.dll" "$(OutDir)"</Command>
     <ClInclude Include="CollisionCube.h" />
     <ClInclude Include="CollisionDemoScene.h" />
     <ClInclude Include="Constants.h" />
-    <ClInclude Include="DoubleUniformShader.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="IndexedModel.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="ModelTexture.h" />
     <ClInclude Include="MutablePoint.h" />
-    <ClInclude Include="OriginalShader.h" />
     <ClInclude Include="ProjectileGameObject.h" />
     <ClInclude Include="QuadMShader.h" />
     <ClInclude Include="resource.h" />

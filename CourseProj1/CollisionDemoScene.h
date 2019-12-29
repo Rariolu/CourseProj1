@@ -16,15 +16,20 @@ class CollisionDemoScene : public Scene
 		bool KeyDown(SDL_Keycode keycode);
 		bool MouseDown(SDL_MouseButtonEvent mousebutton);
 		bool Update();
+
+		//Move the camera depending on which of the
+		//W, A, S, or D keys are pressed.
 		void WASD(SDL_Keycode keycode);
+
 		void Fire();
 		void DestroyProjectile(ProjectileGameObject* ball);
-		CollisionCube* cube1;
-		//CollisionCube* cube2;
-		//CollisionSphere* sphere1;
-		//CollisionSphere* sphere2;
+		void DestroyCube(CollisionCube* cube);
+
+		void CreateCube();
+		//CollisionCube* cube1;
 		float speed = 50.0f;
 		vector<ProjectileGameObject*> projectiles;
+		vector<CollisionCube*> cubes;
 		unsigned int shotSource;
 		unsigned int bluesiSource;
 };
