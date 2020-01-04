@@ -34,8 +34,6 @@ class BoxCollider : public Collider
 		//A box which represents the boundaries
 		//of this collider.
 		Box* boundBox;
-
-		Box defaultBox;
 };
 
 #endif
