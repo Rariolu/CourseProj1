@@ -6,7 +6,9 @@ ModelTexture::ModelTexture(string filename)
 	int height;
 	int componentNumber;
 
+	//Load image data from the given file name and store in "imageData".
 	unsigned char* imageData = stbi_load(filename.c_str(), &width, &height, &componentNumber, 4);
+	
 	if (!imageData)
 	{
 		//Error message

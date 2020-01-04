@@ -46,11 +46,13 @@ class Scene
 		//Designate the next scene to be loaded.
 		void SetNextScene(string scenename);
 
+		//A pointer to an instance of "AudioDevice" used to play
+		//sounds using the system's default audio device.
+		AudioDevice* audioDevice;
+
 		//The camera that's used to render the gameobjects
 		//from a particular perspective.
 		Camera* camera;
-
-		AudioDevice* audioDevice;
 	private:
 
 		//Process the user's input and return true if
