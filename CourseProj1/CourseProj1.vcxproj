@@ -143,6 +143,7 @@ xcopy /Y "$(SolutionDir)Dependencies\AL\lib\*.dll" "$(OutDir)"</Command>
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="CollisionCube.cpp" />
     <ClCompile Include="CollisionDemoScene.cpp" />
+    <ClCompile Include="CubeMap.cpp" />
     <ClCompile Include="DoubleUniformShader.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -175,6 +176,7 @@ xcopy /Y "$(SolutionDir)Dependencies\AL\lib\*.dll" "$(OutDir)"</Command>
     <ClInclude Include="CollisionCube.h" />
     <ClInclude Include="CollisionDemoScene.h" />
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="CubeMap.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="IndexedModel.h" />
