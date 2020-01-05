@@ -158,6 +158,7 @@ xcopy /Y "$(SolutionDir)Dependencies\AL\lib\*.dll" "$(OutDir)"</Command>
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="ObjLoad.cpp" />
     <ClCompile Include="SDLWindowManager.cpp" />
+    <ClCompile Include="SkyBox.cpp" />
     <ClCompile Include="SphereCollider.cpp" />
     <ClCompile Include="stb_image.c" />
     <ClCompile Include="Temp_obj_loader.cpp" />
@@ -190,6 +191,7 @@ xcopy /Y "$(SolutionDir)Dependencies\AL\lib\*.dll" "$(OutDir)"</Command>
     <ClInclude Include="Scene.h" />
     <ClInclude Include="ObjLoad.h" />
     <ClInclude Include="SDLWindowManager.h" />
+    <ClInclude Include="SkyBox.h" />
     <ClInclude Include="SphereCollider.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Temp_obj_loader.h" />
