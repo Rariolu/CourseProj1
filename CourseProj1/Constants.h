@@ -27,6 +27,9 @@ const string ballMeshFile = "..\\Resources\\ball.obj";
 const string shaderName = "shader1";
 const string quadMShaderFile = "..\\Resources\\quadMShader";
 
+const string skyboxShaderName = "skyboxShader";
+const string skyboxShaderFile = "..\\Resources\\skybox";
+
 //Scenes
 
 const string collisionDemoScene = "collisionDemo";

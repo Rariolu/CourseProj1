@@ -57,6 +57,8 @@ void Game::ResourceSetup()
 	QuadMShader* shader4 = new QuadMShader(quadMShaderFile);
 	resourceManager->AddShader(shaderName, shader4);
 
+
+
 	//Add scenes
 	resourceManager->AddScene(collisionDemoScene, new CollisionDemoScene());
 }
