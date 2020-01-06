@@ -113,6 +113,10 @@
 // The three functions you must define are "read" (reads some bytes of data),
 // "skip" (skips some bytes of data), "eof" (reports if the stream is at the end).
 
+#ifndef _STBIMAGE_H
+#define _STBIMAGE_H
+//Added "_STBIMAGE_H" macro so that this file could be included in multiple other files.
+
 
 #ifndef STBI_NO_STDIO
 
@@ -259,3 +263,6 @@ extern "C" {
 //
 //
 ////   end header file   /////////////////////////////////////////////////////
+
+
+#endif

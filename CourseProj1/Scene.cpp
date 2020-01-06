@@ -98,6 +98,11 @@ void Scene::SetNextScene(string scenename)
 	nextScene = scenename;
 }
 
+void Scene::SetSkyBox(SkyBox* _skybox)
+{
+	skybox = _skybox;
+}
+
 bool Scene::GetInput()
 {
 	SDL_Event event;
@@ -146,6 +151,10 @@ void Scene::Render()
 		{
 			go->Render();
 		}
+	}
+	if (skybox)
+	{
+		skybox->Render();
 	}
 	glEnableClientState(GL_COLOR_ARRAY);
 	glEnd();

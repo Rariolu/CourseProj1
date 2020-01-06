@@ -20,6 +20,8 @@ class Camera : public MutablePoint
 		//be given to the shader to render the
 		//3D world from the camera's perspective.
 		Matrix GetViewProjection() const;
+		Matrix GetView() const;
+		Matrix GetProjection() const;
 	private:
 		Vec3 forward;
 		Matrix projection;

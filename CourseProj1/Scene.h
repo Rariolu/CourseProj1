@@ -6,6 +6,7 @@
 #include "GameObject.h"
 #include "SDLWindowManager.h"
 #include "AudioDevice.h"
+#include "SkyBox.h"
 
 class Scene
 {
@@ -45,6 +46,8 @@ class Scene
 
 		//Designate the next scene to be loaded.
 		void SetNextScene(string scenename);
+
+		void SetSkyBox(SkyBox* _skybox);
 
 		//A pointer to an instance of "AudioDevice" used to play
 		//sounds using the system's default audio device.
@@ -94,6 +97,8 @@ class Scene
 
 		//The time stamp of the previous frame.
 		float previousTimeStamp = 0;
+
+		SkyBox* skybox;
 };
 
 #endif

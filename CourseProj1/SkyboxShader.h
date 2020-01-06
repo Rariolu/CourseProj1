@@ -8,6 +8,7 @@ class SkyboxShader : public AbstractShader
 	public:
 		SkyboxShader(string filepath);
 		void Update(Transform* transform, Camera* camera);
+		void Update(Camera* camera);
 	private:
 		GLuint projection;
 		GLuint view;
