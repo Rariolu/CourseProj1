@@ -15,7 +15,7 @@ class SkyBox
 	private:
 		void InitialiseCube();
 		Camera * camera;
-		CubeMap cubeMap = nullptr;
+		CubeMap cubeMap;
 		unsigned int skyboxVAO;
 		unsigned int skyboxVBO;
 		SkyboxShader* skyboxShader;

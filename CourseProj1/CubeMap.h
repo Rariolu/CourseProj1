@@ -10,6 +10,7 @@
 class CubeMap
 {
 	public:
+		CubeMap();
 		CubeMap(string filepath);
 		CubeMap(string posXFile, string negXFile, string posYFile, string negYFile, string posZFile, string negZFile);
 		CubeMap(string textures[6]);

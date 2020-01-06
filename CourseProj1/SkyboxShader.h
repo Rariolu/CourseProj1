@@ -11,6 +11,7 @@ class SkyboxShader : public AbstractShader
 		void Update(Camera* camera);
 	private:
 		GLuint projection;
+		GLuint skybox;
 		GLuint view;
 };
 

@@ -6,6 +6,8 @@ SkyboxShader::SkyboxShader(string filepath) : AbstractShader(filepath)
 
 	view = glGetUniformLocation(program, "view");
 	projection = glGetUniformLocation(program, "projection");
+	skybox = glGetUniformLocation(program, "skybox");
+
 }
 
 void SkyboxShader::Update(Transform* transform, Camera* camera)
@@ -17,6 +19,7 @@ void SkyboxShader::Update(Camera* camera)
 {
 	Matrix viewMat = Matrix(Mat3(camera->GetView()));
 	Matrix projMat = camera->GetProjection();
+	glUniform1i(skybox, 0);
 	glUniformMatrix4fv(view, 1, GLU_FALSE, &viewMat[0][0]);
 	glUniformMatrix4fv(projection, 1, GLU_FALSE, &projMat[0][0]);
 }

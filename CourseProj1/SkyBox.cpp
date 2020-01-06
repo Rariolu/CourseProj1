@@ -9,7 +9,8 @@ SkyBox::SkyBox(string texturePath, string shaderName)
 
 SkyBox::~SkyBox()
 {
-
+	glDeleteVertexArrays(1, &skyboxVAO);
+	glDeleteBuffers(1, &skyboxVBO);
 }
 
 void SkyBox::Render()
@@ -21,9 +22,9 @@ void SkyBox::Render()
 
 		skyboxShader->Bind();
 		skyboxShader->Update(camera);
+
+		
 		cubeMap.Bind();
-
-
 
 		//render mesh
 		glBindVertexArray(skyboxVAO);
@@ -41,7 +42,6 @@ void SkyBox::SetCamera(Camera* cam)
 
 void SkyBox::InitialiseCube()
 {
-	unsigned int skyboxVAO;
 	glGenVertexArrays(1, &skyboxVAO);
 	glGenBuffers(1, &skyboxVBO);
 	glBindVertexArray(skyboxVAO);
