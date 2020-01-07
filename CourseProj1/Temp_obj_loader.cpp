@@ -6,15 +6,15 @@
 
 static bool CompareOBJIndexPtr(const OBJIndex* a, const OBJIndex* b);
 static inline unsigned int FindNextChar(unsigned int start, const char* str, unsigned int length, char token);
-static inline unsigned int ParseOBJIndexValue(const std::string& token, unsigned int start, unsigned int end);
-static inline float ParseOBJFloatValue(const std::string& token, unsigned int start, unsigned int end);
-static inline std::vector<std::string> SplitString(const std::string& s, char delim);
+static inline unsigned int ParseOBJIndexValue(const string& token, unsigned int start, unsigned int end);
+static inline float ParseOBJFloatValue(const string& token, unsigned int start, unsigned int end);
+static inline vector<string> SplitString(const string& s, char delim);
 
 OBJModel::OBJModel(const std::string& fileName)
 {
 	hasUVs = false;
 	hasNormals = false;
-	std::ifstream file;
+	InputFileStream file;
 	file.open(fileName.c_str());
 
 	std::string line;
