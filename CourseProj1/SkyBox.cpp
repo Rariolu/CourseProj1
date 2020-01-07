@@ -17,8 +17,12 @@ void SkyBox::Render()
 {
 	if (camera)
 	{
+
+		glDepthMask(GL_FALSE);
 		// draw skybox as last
-		glDepthFunc(GL_LEQUAL);
+		//glDepthFunc(GL_LEQUAL);
+
+		
 
 		skyboxShader->Bind();
 		skyboxShader->Update(camera);
@@ -31,7 +35,11 @@ void SkyBox::Render()
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 		glBindVertexArray(0);
 
-		glDepthFunc(GL_LESS); // set depth function back to default
+		
+
+		//glDepthFunc(GL_LESS); // set depth function back to default
+
+		glDepthMask(GL_TRUE);
 	}
 }
 
