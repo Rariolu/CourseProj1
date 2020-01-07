@@ -81,8 +81,7 @@ void Mesh::InitialiseModel(ObjIndexedModel* model)
 	glBindVertexArray(vertexArrayObject);
 
 	unsigned int positionsSize = model->positions.size() * sizeof(model->positions[0]);
-	//unsigned int uvSize = model->uvCoordinates.size() * sizeof(model->uvCoordinates[0]);
-	unsigned int uvSize = model->texCoords.size() * sizeof(model->texCoords[0]);
+	unsigned int uvSize = model->uvCoords.size() * sizeof(model->uvCoords[0]);
 	unsigned int normalSize = model->normals.size() * sizeof(model->normals[0]);
 	unsigned int indexSize = model->indices.size() * sizeof(model->indices[0]);
 
@@ -98,7 +97,7 @@ void Mesh::InitialiseModel(ObjIndexedModel* model)
 	//Bind and populate UV buffer
 	glBindBuffer(GL_ARRAY_BUFFER, vertexArrayBuffers[1]);
 	//glBufferData(GL_ARRAY_BUFFER, uvSize, &model->uvCoordinates[1], GL_STATIC_DRAW);
-	glBufferData(GL_ARRAY_BUFFER, uvSize, &model->texCoords[1], GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, uvSize, &model->uvCoords[1], GL_STATIC_DRAW);
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
 

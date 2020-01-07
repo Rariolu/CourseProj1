@@ -19,7 +19,7 @@ class ObjIndexedModel
 {
 public:
 	vector<Vec3> positions;
-	vector<Vec2> texCoords;
+	vector<Vec2> uvCoords;
 	vector<Vec3> normals;
 	vector<unsigned int> indices;
 
