@@ -24,21 +24,26 @@ CubeMap::CubeMap(string textures[6])
 	glGenTextures(1, &texture);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, texture);
 
-	int width;
-	int height;
-	int nrChannels;
 	for (int i = 0; i < 6; i++)
 	{
-		string texture = textures[i];
-		unsigned char* data = stbi_load(texture.c_str(), &width, &height, &nrChannels, 0);
+		string textureFile = textures[i];
+		int width;
+		int height;
+		int nrChannels;
+		
+		//Load the requested texture file into "data".
+		unsigned char* data = stbi_load(textureFile.c_str(), &width, &height, &nrChannels, 0);
+		
 		if (data)
 		{
 			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
 		}
 		else
 		{
-			std::cout << texture << ": failed to load" << std::endl;
+			std::cout << textureFile << ": failed to load" << std::endl;
 		}
+
+		//"Free" the image data now that it's no longer needed.
 		stbi_image_free(data);
 	}
 

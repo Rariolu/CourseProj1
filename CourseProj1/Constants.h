@@ -11,7 +11,8 @@ const string texture1File = "..\\Resources\\texture1.png";
 const string texture2Name = "texture2";
 const string texture2File = "..\\Resources\\texture2.png";
 
-const string skyboxFile = "..\\Resources\\Skybox\\skybox_";
+//const string skyboxFile = "..\\Resources\\Skybox\\skybox_";
+const string skyboxFile = "..\\Resources\\skybox_temp\\skybox_";
 
 //Meshes
 
