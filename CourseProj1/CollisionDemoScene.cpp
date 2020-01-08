@@ -21,7 +21,7 @@ void CollisionDemoScene::Initialise()
 
 	SkyBox* sky = new SkyBox(skyboxFile, skyboxShaderName);
 	sky->SetCamera(camera);
-	SetSkyBox(sky);
+	//SetSkyBox(sky);
 }
 
 bool CollisionDemoScene::KeyDown(SDL_Keycode keycode)

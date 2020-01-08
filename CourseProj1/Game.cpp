@@ -52,6 +52,7 @@ void Game::ResourceSetup()
 	SetupMesh(cubeName, mesh1File);
 	SetupMesh(mesh2Name, mesh2File);
 	SetupMesh(ballMeshName, ballMeshFile);
+	SetupMesh(pyramidName, pyramidFile);
 
 	//Shaders
 	QuadMShader* shader = new QuadMShader(quadMShaderFile);

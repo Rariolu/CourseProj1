@@ -19,11 +19,11 @@ const string skyboxFile = "..\\Resources\\skybox_temp\\skybox_";
 const string cubeName = "cube";
 const string mesh1File = "..\\Resources\\mesh1.obj";
 
-const string mesh2Name = "mesh2";
-const string mesh2File = "..\\Resources\\mesh2.obj";
-
 const string ballMeshName = "ball";
 const string ballMeshFile = "..\\Resources\\ball.obj";
+
+const string pyramidName = "pyramid";
+const string pyramidFile = "..\\Resources\\pyramid.obj";
 
 //Shaders
 
