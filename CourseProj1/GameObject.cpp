@@ -16,7 +16,7 @@ GameObject::GameObject(Mesh* mesh, AbstractShader* shader, ModelTexture* texture
 
 GameObject::~GameObject()
 {
-	//delete transform;
+	
 }
 
 bool GameObject::CollidesWith(GameObject* other)
@@ -41,11 +41,6 @@ Collider* GameObject::GetCollider()
 {
 	return collider;
 }
-
-//Transform* GameObject::GetTransform()
-//{
-//	return transform;
-//}
 
 bool GameObject::IsActive()
 {
@@ -72,21 +67,6 @@ void GameObject::SetCamera(Camera* cam)
 {
 	camera = cam;
 }
-//
-//void GameObject::SetPosition(Vec3 position)
-//{
-//	transform->SetPosition(position);
-//}
-//
-//void GameObject::SetRotation(Vec3 rotation)
-//{
-//	transform->SetRotation(rotation);
-//}
-//
-//void GameObject::SetScale(Vec3 scale)
-//{
-//	transform->SetScale(scale);
-//}
 
 void GameObject::SetCollider(Collider* col)
 {

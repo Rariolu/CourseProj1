@@ -144,20 +144,26 @@ bool Scene::GetInput()
 void Scene::Render()
 {
 	SDLWindowManager* wnd = SDLWindowManager::Instance();
+
+	//Clear the display so that it only shows the specified
+	//RGBA values.
 	//wnd->ClearDisplay(0.0f, 0.0f, 0.0f, 1.0f);
-	wnd->ClearDisplay(1.0f, 1.0f, 1.0f, 1.0f);
+	wnd->ClearDisplay(1.0f, 0.0f, 1.0f, 1.0f);
+
+	//Iterate through the gameobjects and render them.
 	for (GameObject* go : gameObjects)
 	{
-		if (go->IsActive())
-		{
-			go->Render();
-		}
+		go->Render();
 	}
+
+	//If a skybox has been specified, render that skybox.
 	if (skybox)
 	{
 		skybox->Render();
 	}
 	glEnableClientState(GL_COLOR_ARRAY);
 	glEnd();
+
+	//Swap the window buffers
 	wnd->SwapBuffer();
 }
