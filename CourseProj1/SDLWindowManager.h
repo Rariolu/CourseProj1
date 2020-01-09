@@ -4,6 +4,7 @@
 #include "SDL.h"
 #include "glew.h"
 #include "Aliases.h"
+#include "Logger.h"
 
 class SDLWindowManager
 {
@@ -41,8 +42,6 @@ class SDLWindowManager
 		//(private so that instances can only be created by the
 		//"Instance" method).
 		SDLWindowManager();
-
-
 
 		//Attempt to create and initialse an SDL window and return true if
 		//it succeeds (and return false if it fails).

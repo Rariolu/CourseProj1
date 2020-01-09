@@ -69,21 +69,21 @@ bool SDLWindowManager::Initialise(string windowTitle, float width, float height)
 	sdlWindow = SDL_CreateWindow(windowTitle.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, (int)width, (int)height, SDL_WINDOW_OPENGL);
 	if (!sdlWindow)
 	{
-		//error message
+		Log("SDL Window was not created.");
 		return false;
 	}
 
 	openGLContext = new SDL_GLContext(SDL_GL_CreateContext(sdlWindow));
 	if (!(*openGLContext))
 	{
-		//error message
+		Log("OpenGL context was not created.");
 		return false;
 	}
 
 	GLenum glState = glewInit();
 	if (glState != GLEW_OK)
 	{
-		//error message
+		Log("OpenGL failed to initialise.");
 		return false;
 	}
 

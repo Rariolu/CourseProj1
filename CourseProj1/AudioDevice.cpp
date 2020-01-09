@@ -7,12 +7,12 @@ AudioDevice::AudioDevice()
 	device = alcOpenDevice(nullptr);
 	if (!device)
 	{
-		//error message
+		Log("Couldn't open openAL audio device.");
 	}
 	context = alcCreateContext(device, nullptr);
 	if (!context)
 	{
-		//error message
+		Log("Couldn't initialise openAL context.");
 	}
 	alcMakeContextCurrent(context);
 	SetIsBigEndian();
@@ -136,8 +136,8 @@ void AudioDevice::SetListener(Camera* camera)
 	Vec3 pos = *camera->GetPosition();
 	Vec3 dir = *camera->GetForward();
 	alListener3f(AL_POSITION, pos.x, pos.y, -pos.z);
-	float orinet[6] = { dir.x, dir.y, dir.z,0,1,0 };
-	alListenerfv(AL_ORIENTATION, orinet);
+	float orinetation[6] = { dir.x, dir.y, dir.z,0,1,0 };
+	alListenerfv(AL_ORIENTATION, orinetation);
 }
 
 void AudioDevice::StopSound(unsigned int id)

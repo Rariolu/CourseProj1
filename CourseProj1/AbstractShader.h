@@ -5,6 +5,7 @@
 #include "Util.h"
 #include "Transform.h"
 #include "Camera.h"
+#include "Logger.h"
 
 class AbstractShader
 {

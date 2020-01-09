@@ -45,7 +45,7 @@ GLuint AbstractShader::CreateShader(string text, unsigned int type)
 
 	if (!shader)
 	{
-		//error message
+		Log("Shader failed to be created.");
 	}
 
 	const GLchar* stringsource[] = { text.c_str() };

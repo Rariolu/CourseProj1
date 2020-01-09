@@ -11,7 +11,7 @@ ModelTexture::ModelTexture(string filename)
 	
 	if (!imageData)
 	{
-		//Error message
+		Log("Image from file \"" + filename + "\" failed to load.");
 	}
 
 	glGenTextures(1, &textureHandler);

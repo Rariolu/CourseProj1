@@ -24,6 +24,8 @@ CubeMap::CubeMap(string textures[6])
 	glGenTextures(1, &texture);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, texture);
 
+	//Loop through all the files in the "textures" array and load them
+	//into memory.
 	for (int i = 0; i < 6; i++)
 	{
 		string textureFile = textures[i];
@@ -36,11 +38,12 @@ CubeMap::CubeMap(string textures[6])
 		
 		if (data)
 		{
+			//If file has been loaded correctly, load it into the openGL buffer.
 			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
 		}
 		else
 		{
-			std::cout << textureFile << ": failed to load" << std::endl;
+			Log("\"" + textureFile + "\" failed to load.");
 		}
 
 		//"Free" the image data now that it's no longer needed.
@@ -56,11 +59,13 @@ CubeMap::CubeMap(string textures[6])
 
 CubeMap::~CubeMap()
 {
+	//Remove the texture from the openGL buffer.
 	glDeleteTextures(1, &texture);
 }
 
 void CubeMap::Bind()
 {
+	//Bind the cubemap texture
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, texture);
 }

@@ -19,25 +19,21 @@ void SkyBox::Render()
 	{
 
 		glDepthMask(GL_FALSE);
-		// draw skybox as last
-		//glDepthFunc(GL_LEQUAL);
-
 		
+		glDepthFunc(GL_LEQUAL);
 
 		skyboxShader->Bind();
 		skyboxShader->Update(camera);
-
 		
 		cubeMap.Bind();
 
-		//render mesh
+		//Bind the skybox vertices.
 		glBindVertexArray(skyboxVAO);
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 		glBindVertexArray(0);
 
-		
-
-		//glDepthFunc(GL_LESS); // set depth function back to default
+		glDepthFunc(GL_LESS);
+		//Set depth function back to default
 
 		glDepthMask(GL_TRUE);
 	}

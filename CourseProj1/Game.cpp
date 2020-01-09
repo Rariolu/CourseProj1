@@ -50,12 +50,15 @@ void Game::ResourceSetup()
 
 	//Add meshes
 	SetupMesh(cubeName, mesh1File);
-	SetupMesh(mesh2Name, mesh2File);
 	SetupMesh(ballMeshName, ballMeshFile);
+	SetupMesh(pyramidName, pyramidFile);
 
 	//Shaders
 	QuadMShader* shader4 = new QuadMShader(quadMShaderFile);
 	resourceManager->AddShader(shaderName, shader4);
+
+	SkyboxShader* skyboxShader = new SkyboxShader(skyboxShaderFile);
+	resourceManager->AddShader(skyboxShaderName, skyboxShader);
 
 	//Add scenes
 	resourceManager->AddScene(collisionDemoScene, new CollisionDemoScene());

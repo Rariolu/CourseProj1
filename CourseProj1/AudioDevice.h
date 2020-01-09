@@ -4,6 +4,7 @@
 #include <al.h>
 #include <alc.h>
 #include "Camera.h"
+#include "Logger.h"
 
 //Establishes a connection to the primary audio device
 //and allows audio to be played using it.
