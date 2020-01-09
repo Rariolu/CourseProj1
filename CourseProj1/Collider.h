@@ -9,7 +9,8 @@
 enum class COLLIDERTYPE
 {
 	SPHERE,
-	BOX
+	BOX,
+	OTHER
 };
 
 //A class which detects collisions with other colliders.

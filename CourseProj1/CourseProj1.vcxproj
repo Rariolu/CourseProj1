@@ -28,7 +28,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -143,6 +143,7 @@ xcopy /Y "$(SolutionDir)Dependencies\AL\lib\*.dll" "$(OutDir)"</Command>
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="CollisionCube.cpp" />
     <ClCompile Include="CollisionDemoScene.cpp" />
+    <ClCompile Include="CubeMap.cpp" />
     <ClCompile Include="DoubleUniformShader.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -157,6 +158,8 @@ xcopy /Y "$(SolutionDir)Dependencies\AL\lib\*.dll" "$(OutDir)"</Command>
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="ObjLoad.cpp" />
     <ClCompile Include="SDLWindowManager.cpp" />
+    <ClCompile Include="SkyBox.cpp" />
+    <ClCompile Include="SkyboxShader.cpp" />
     <ClCompile Include="SphereCollider.cpp" />
     <ClCompile Include="stb_image.c" />
     <ClCompile Include="Temp_obj_loader.cpp" />
@@ -175,6 +178,7 @@ xcopy /Y "$(SolutionDir)Dependencies\AL\lib\*.dll" "$(OutDir)"</Command>
     <ClInclude Include="CollisionCube.h" />
     <ClInclude Include="CollisionDemoScene.h" />
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="CubeMap.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="IndexedModel.h" />
@@ -188,6 +192,8 @@ xcopy /Y "$(SolutionDir)Dependencies\AL\lib\*.dll" "$(OutDir)"</Command>
     <ClInclude Include="Scene.h" />
     <ClInclude Include="ObjLoad.h" />
     <ClInclude Include="SDLWindowManager.h" />
+    <ClInclude Include="SkyBox.h" />
+    <ClInclude Include="SkyboxShader.h" />
     <ClInclude Include="SphereCollider.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Temp_obj_loader.h" />

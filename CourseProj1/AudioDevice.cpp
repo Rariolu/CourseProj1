@@ -46,21 +46,45 @@ unsigned int AudioDevice::LoadSound(const char* filename)
 	bool found = false;
 	unsigned int sourceID;
 	unsigned int bufferID;
+	
+	//Loops through the stored audio metadata to find
+	//a match for the requested file (in case it is accidentally
+	//attemptedly loaded twice).
 	for (unsigned int i = 0; i < datas.size(); i++)
 	{
+		//If the current metadata uses the same file
+		//and has a buffer ID of not -1 (i.e. isn't 
+		//a duplicate entry for that file).
 		if (datas[i].filename == filename && datas[i].bufferID != -1)
 		{
+			//Set the current "bufferID" to
+			//the one of the loaded file.
 			bufferID = datas[i].bufferID;
+
+			//Set "found" to true to indicate
+			//that the stored information
+			//was found.
 			found = true;
+
+			//Exit the loop to avoid unnecessarily
+			//searching through the rest of the entries.
 			break;
 		}
 	}
+
+	//If the file wasn't found (i.e. wasn't previously loaded).
 	if (!found)
 	{
 		char* soundData = nullptr;
 		int channel, sampleRate, bps, size;
+		
+		//Load the audio data from the given file path, setting the values
+		//of "channel", "sampleRate", "bps", and "size" appropriately.
 		soundData = LoadWave(filename, channel, sampleRate, bps, size);
+		
 		unsigned int format;
+
+		//Create a buffer ID to identify this particular audio data.
 		alGenBuffers(1, &bufferID);
 
 		if (channel == 1)

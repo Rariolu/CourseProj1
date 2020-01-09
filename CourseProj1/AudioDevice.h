@@ -28,6 +28,10 @@ class AudioDevice
 	public:
 		static AudioDevice* Instance();
 		~AudioDevice();
+
+		//Load the audio from a given file into memory
+		//and return a unique identifier to use this audio
+		//when needed.
 		unsigned int LoadSound(const char* filename);
 		void PlaySound(unsigned int id);
 		void PlaySound(unsigned int id, Vec3 pos);

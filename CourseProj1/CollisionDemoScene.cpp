@@ -15,11 +15,13 @@ void CollisionDemoScene::Initialise()
 {
 	Scene::Initialise();
 	camera->SetPosition(Vec3(0, 0, -5.0f));
-	//cube1 = new CollisionCube();
-	//AddGameObject(cube1);
-	shotSource = audioDevice->LoadSound("..\\Resources\\EnemyShot2.wav");
-	bluesiSource = audioDevice->LoadSound("..\\Resources\\Bluesi.wav");
+	shotSource = audioDevice->LoadSound(shotSoundFile.c_str());
+	bluesiSource = audioDevice->LoadSound(musicFile.c_str());
 	audioDevice->PlaySound(bluesiSource);
+
+	SkyBox* sky = new SkyBox(skyboxFile, skyboxShaderName);
+	sky->SetCamera(camera);
+	//SetSkyBox(sky);
 }
 
 bool CollisionDemoScene::KeyDown(SDL_Keycode keycode)

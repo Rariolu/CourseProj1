@@ -6,15 +6,15 @@
 
 static bool CompareOBJIndexPtr(const OBJIndex* a, const OBJIndex* b);
 static inline unsigned int FindNextChar(unsigned int start, const char* str, unsigned int length, char token);
-static inline unsigned int ParseOBJIndexValue(const std::string& token, unsigned int start, unsigned int end);
-static inline float ParseOBJFloatValue(const std::string& token, unsigned int start, unsigned int end);
-static inline std::vector<std::string> SplitString(const std::string& s, char delim);
+static inline unsigned int ParseOBJIndexValue(const string& token, unsigned int start, unsigned int end);
+static inline float ParseOBJFloatValue(const string& token, unsigned int start, unsigned int end);
+static inline vector<string> SplitString(const string& s, char delim);
 
 OBJModel::OBJModel(const std::string& fileName)
 {
 	hasUVs = false;
 	hasNormals = false;
-	std::ifstream file;
+	InputFileStream file;
 	file.open(fileName.c_str());
 
 	std::string line;
@@ -140,7 +140,7 @@ ObjIndexedModel OBJModel::ToIndexedModel()
 
 			normalModelIndexMap.insert(std::pair<OBJIndex, unsigned int>(*currentIndex, normalModelIndex));
 			normalModel.positions.push_back(currentPosition);
-			normalModel.texCoords.push_back(currentTexCoord);
+			normalModel.uvCoords.push_back(currentTexCoord);
 			normalModel.normals.push_back(currentNormal);
 		}
 		else
@@ -155,7 +155,7 @@ ObjIndexedModel OBJModel::ToIndexedModel()
 			resultModelIndex = result.positions.size();
 
 			result.positions.push_back(currentPosition);
-			result.texCoords.push_back(currentTexCoord);
+			result.uvCoords.push_back(currentTexCoord);
 			result.normals.push_back(currentNormal);
 		}
 		else
@@ -235,7 +235,7 @@ unsigned int OBJModel::FindLastVertexIndex(const std::vector<OBJIndex*>& indexLo
 					for (unsigned int j = 0; j < result.positions.size(); j++)
 					{
 						if (currentPosition == result.positions[j]
-							&& ((!hasUVs || currentTexCoord == result.texCoords[j])
+							&& ((!hasUVs || currentTexCoord == result.uvCoords[j])
 								&& (!hasNormals || currentNormal == result.normals[j])))
 						{
 							return j;

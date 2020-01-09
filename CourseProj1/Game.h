@@ -9,7 +9,7 @@
 #include "Temp_obj_loader.h"
 #include "ModelTexture.h"
 #include "QuadMShader.h"
-
+#include "SkyboxShader.h"
 
 class Game
 {

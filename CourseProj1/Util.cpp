@@ -23,6 +23,13 @@ int RandomNumber(int min, int max)
 	return min + (rand() % (max - min + 1));
 }
 
+Matrix RemoveTranslation(Matrix mat)
+{
+	Mat3 m3 = Mat3(mat);
+	return Matrix(m3);
+	//TODO: Replace with more efficient method
+}
+
 float SquareValue(float value)
 {
 	return value * value;

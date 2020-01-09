@@ -98,6 +98,11 @@ void Scene::SetNextScene(string scenename)
 	nextScene = scenename;
 }
 
+void Scene::SetSkyBox(SkyBox* _skybox)
+{
+	skybox = _skybox;
+}
+
 bool Scene::GetInput()
 {
 	SDL_Event event;
@@ -139,13 +144,18 @@ bool Scene::GetInput()
 void Scene::Render()
 {
 	SDLWindowManager* wnd = SDLWindowManager::Instance();
-	wnd->ClearDisplay(0.0f, 0.0f, 0.0f, 1.0f);
+	//wnd->ClearDisplay(0.0f, 0.0f, 0.0f, 1.0f);
+	wnd->ClearDisplay(1.0f, 1.0f, 1.0f, 1.0f);
 	for (GameObject* go : gameObjects)
 	{
 		if (go->IsActive())
 		{
 			go->Render();
 		}
+	}
+	if (skybox)
+	{
+		skybox->Render();
 	}
 	glEnableClientState(GL_COLOR_ARRAY);
 	glEnd();

@@ -20,5 +20,16 @@ Vec3* Camera::GetUp()
 
 Matrix Camera::GetViewProjection() const
 {
-	return projection * glm::lookAt(position, position + forward, up);
+	return projection * GetView();
+	//return projection * glm::lookAt(position, position + forward, up);
+}
+
+Matrix Camera::GetView() const
+{
+	return glm::lookAt(position, position + forward, up);
+}
+
+Matrix Camera::GetProjection() const
+{
+	return projection;
 }

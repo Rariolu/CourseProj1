@@ -1,6 +1,6 @@
 #include "CollisionCube.h"
 
-CollisionCube::CollisionCube() : GameObject(cubeName,shaderName,texture1Name)
+CollisionCube::CollisionCube() : GameObject(RandomNumber(0,1) == 0 ? cubeName : pyramidName,shaderName,texture1Name)
 {
 	boxCollider = new BoxCollider(Vec3(2, 2, 2), /*GetTransform()->*/GetPosition());
 	SetCollider(boxCollider);
