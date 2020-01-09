@@ -144,7 +144,8 @@ bool Scene::GetInput()
 void Scene::Render()
 {
 	SDLWindowManager* wnd = SDLWindowManager::Instance();
-	wnd->ClearDisplay(0.0f, 0.0f, 0.0f, 1.0f);
+	//wnd->ClearDisplay(0.0f, 0.0f, 0.0f, 1.0f);
+	wnd->ClearDisplay(1.0f, 1.0f, 1.0f, 1.0f);
 	for (GameObject* go : gameObjects)
 	{
 		if (go->IsActive())
