@@ -21,19 +21,28 @@ GameObject::~GameObject()
 
 bool GameObject::CollidesWith(GameObject* other)
 {
+	//Return false if the other gameobject or this gameobject's
+	//collider is null.
 	if (!other || !collider)
 	{
 		return false;
 	}
+
+	//Return false if this gameobject or the other gameobject
+	//is inactive.
 	if (!(IsActive() && other->IsActive()))
 	{
 		return false;
 	}
+
+	//Return false if the other gameobject's collider is null.
 	Collider* otherCollider = other->GetCollider();
 	if (!otherCollider)
 	{
 		return false;
 	}
+
+	//Check for collisions between the two colliders.
 	return collider->CollidesWith(otherCollider) || otherCollider->CollidesWith(collider);
 }
 
@@ -51,9 +60,18 @@ void GameObject::Render()
 {
 	if (isActive && camera)
 	{
+		//Bind the shader
 		shader->Bind();
+		
+		//Update the shader's uniform variables
+		//according to the position, orientation, and scaling
+		//of this object as well as the camera.
 		shader->Update(this, camera);
+
+		//Bind the texture
 		texture->Bind();
+
+		//Render the mesh
 		mesh->Render();
 	}
 }

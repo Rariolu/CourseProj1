@@ -35,26 +35,37 @@ class GameObject : public Transform
 
 		//Set the camera that's used to render this gameobject.
 		void SetCamera(Camera* cam);
-	protected:
 
+	protected:
 		//Set the collider that's used to determine
 		//collisions with other gameobjects.
 		void SetCollider(Collider* col);
+
 	private:
 		//The camera that's used to render this gameobject.
 		Camera* camera;
-
-		//The active state of this gameobject.
-		bool isActive = true;
 
 		//The collider that's used to determine
 		//collisions with other gameobjects.
 		Collider* collider;
 
+		//The active state of this gameobject.
+		bool isActive = true;
+
+		//The mesh (collection of vertices) to determine
+		//the gameobject's shape.
 		Mesh* mesh;
-		AbstractShader* shader;
-		ModelTexture* texture;
+
+		//A pointer to the "ResourceManager" so that
+		//resources can be loaded (e.g. shaders, textures, etc.).
 		static ResourceManager* rescManager;
+		
+		//The shader that's used to render the mesh.
+		AbstractShader* shader;
+
+		//The texture that's applied to the mesh in order
+		//to specify its appearance.
+		ModelTexture* texture;
 };
 
 #endif

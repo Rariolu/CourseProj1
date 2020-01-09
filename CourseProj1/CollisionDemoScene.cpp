@@ -156,16 +156,19 @@ bool CollisionDemoScene::Update()
 			}
 		}
 	}
+
 	//Remove all projectiles that have been "destroyed".
 	for (ProjectileGameObject* ball : destroyedBalls)
 	{
 		DestroyProjectile(ball);
 	}
+
 	//Remove all cubes that have been "destroyed".
 	for (CollisionCube* cube : destroyedCubes)
 	{
 		DestroyCube(cube);
 	}
+
 	//If a random number between 0 and 150
 	//happens to be 0, spawn a collision object.
 	if (RandomNumber(0, 150) == 0)
