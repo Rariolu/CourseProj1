@@ -31,15 +31,15 @@ class SkyBox
 		//The cubemap texture to render onto the skybox.
 		CubeMap cubeMap;
 
+		//The shader used to render the skybox.
+		SkyboxShader* skyboxShader;
+
 		//The skybox's vertex array object.
 		unsigned int skyboxVAO;
 
 		//The skybox's vertex buffer object.
 		unsigned int skyboxVBO;
 		
-		//The shader used to render the skybox.
-		SkyboxShader* skyboxShader;
-
 		//The points used to create the skybox (the positions
 		//of a generic cube).
 		const float skyboxVertices[108] =

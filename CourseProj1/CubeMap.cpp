@@ -29,6 +29,7 @@ CubeMap::CubeMap(string textures[6])
 	for (int i = 0; i < 6; i++)
 	{
 		string textureFile = textures[i];
+
 		int width;
 		int height;
 		int nrChannels;
