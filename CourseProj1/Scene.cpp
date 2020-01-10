@@ -2,9 +2,10 @@
 
 Scene::Scene()
 {
+	audioDevice = AudioDevice::Instance();
 	sdlWindowManager = SDLWindowManager::Instance();
 	camera = new Camera(70.0f, sdlWindowManager->GetScreenWidth() / sdlWindowManager->GetScreenHeight(), 0.01f, 1000.0f);
-	audioDevice = AudioDevice::Instance();
+	
 }
 
 Scene::~Scene()
@@ -68,19 +69,28 @@ string Scene::Run()
 
 GameObject* Scene::AddGameObject(string meshName, string textureName, string shaderName)
 {
-	ResourceManager* rMan = ResourceManager::Instance();
-	return AddGameObject(rMan->GetMesh(meshName), rMan->GetModelTexture(textureName), rMan->GetShader(shaderName));
+	//Get the mesh, texture, and shader from the resource manager using the given names.
+	return AddGameObject(resourceManager->GetMesh(meshName), resourceManager->GetModelTexture(textureName), resourceManager->GetShader(shaderName));
 }
 
 GameObject* Scene::AddGameObject(Mesh* mesh, ModelTexture* texture, AbstractShader* shader)
 {
+	//Create a new gameobject using the given mesh, shader, and texture.
 	GameObject* gameObject = new GameObject(mesh, shader, texture);
+
+	//Add the gameobject to the collection of gameobjects to be rendered.
 	AddGameObject(gameObject);
+
+	//Return the gameobject pointer so it can be used elsewhere.
 	return gameObject;
 }
 
 void Scene::AddGameObject(GameObject* gameObject)
 {
+	//Set the camera that's viewing the gameobject
+	//to be the one from this scene so it is rendered
+	//according to the position and orientation of that
+	//camera.
 	gameObject->SetCamera(camera);
 	gameObjects.push_back(gameObject);
 }
@@ -92,6 +102,9 @@ float Scene::DeltaTime()
 
 void Scene::GenerateDeltaTime()
 {
+	//Determine the current time stamp and subtract
+	//the previous time stamp to determine
+	//the amount of time that occurred between frames.
 	float currentTime = (float)SDL_GetTicks() / 1000.0f;
 	float milliseconds = (currentTime - previousTimeStamp);
 	previousTimeStamp = currentTime;
@@ -100,6 +113,8 @@ void Scene::GenerateDeltaTime()
 
 void Scene::RemoveGameObject(GameObject* gameObject)
 {
+	//Iterate through the collection of gameobjects to find
+	//the one that's requested, then erase it from the collection.
 	if (gameObjects.size() > 0)
 	{
 		for (vector<GameObject*>::iterator i = gameObjects.begin(); i < gameObjects.end(); i++)
