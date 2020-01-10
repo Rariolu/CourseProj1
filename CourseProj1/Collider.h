@@ -19,9 +19,6 @@ class Collider
 	public:
 		Collider(COLLIDERTYPE type, Vec3* pos);
 
-		//Resize the collider according to the specified scale vector.
-		virtual void ApplyScale(Vec3 scale) = 0;
-
 		//Returns true if a collision occurs between
 		//this collider instance and the one given.
 		//Left abstract because the nature of collision

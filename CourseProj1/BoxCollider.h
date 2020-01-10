@@ -15,7 +15,6 @@ class BoxCollider : public Collider
 		BoxCollider(Vec3 bounds, Vec3* pos);
 		BoxCollider(Box* box, Vec3* pos);
 		
-		void ApplyScale(Vec3 scale);
 
 		//Return the bounding box of this collider
 		//(i.e. the area that's considered its "volume").

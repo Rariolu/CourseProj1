@@ -6,12 +6,6 @@ SphereCollider::SphereCollider(Vec3* pos, float r, bool isDefaultRadius) : Colli
 	defaultRadius = isDefaultRadius ? r : 1.0f;
 }
 
-void SphereCollider::ApplyScale(Vec3 scale)
-{
-	float minScale = min(scale.x, min(scale.y, scale.z));
-	radius = minScale * defaultRadius;
-}
-
 bool SphereCollider::CollidesWith(Collider* other)
 {
 	//Checks if the other collider is a SphereCollider, 

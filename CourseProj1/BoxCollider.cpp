@@ -11,11 +11,6 @@ BoxCollider::BoxCollider(Box* box, Vec3* pos) : Collider(COLLIDERTYPE::BOX, pos)
 	boundBox->SetPosition(pos);
 }
 
-void BoxCollider::ApplyScale(Vec3 scale)
-{
-
-}
-
 Box* BoxCollider::BoundBox()
 {
 	return boundBox;

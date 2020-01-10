@@ -2,19 +2,25 @@
 
 Scene::Scene()
 {
-	SDLWindowManager* sdlwindowmanager = SDLWindowManager::Instance();
-	camera = new Camera(70.0f, sdlwindowmanager->GetScreenWidth() / sdlwindowmanager->GetScreenHeight(), 0.01f, 1000.0f);
+	sdlWindowManager = SDLWindowManager::Instance();
+	camera = new Camera(70.0f, sdlWindowManager->GetScreenWidth() / sdlWindowManager->GetScreenHeight(), 0.01f, 1000.0f);
 	audioDevice = AudioDevice::Instance();
 }
 
 Scene::~Scene()
 {
+	//Delete pointers in order to free up
+	//memory.
+	delete audioDevice;
 	delete camera;
 	Dispose();
 }
 
 void Scene::Dispose()
 {
+	initialised = false;
+	//Delete all the gameobjects from memory 
+	//to free up resources.
 	for (int i = 0; i < gameObjects.size(); i++)
 	{
 		delete gameObjects[i];
@@ -31,14 +37,28 @@ void Scene::Initialise()
 
 string Scene::Run()
 {
+	//Only run game loop if the scene
+	//has been initialised.
 	if (initialised)
 	{
 		bool loop = true;
+		//While another scene hasn't been
+		//requested and the user's input
+		//and gameplay don't request the
+		//scene to end.
 		while (loop && nextScene == "")
 		{
+			//Update the value of "deltaTime" to represent
+			//the amount of time since the last frame.
 			GenerateDeltaTime();
+
+			//Process key and mouse events.
 			bool input = GetInput();
+
+			//Process game logic.
 			bool update = Update();
+
+			//Render the gameobjects and skybox.
 			Render();
 			loop = input && update;
 		}
@@ -144,12 +164,9 @@ bool Scene::GetInput()
 
 void Scene::Render()
 {
-	SDLWindowManager* wnd = SDLWindowManager::Instance();
-
 	//Clear the display so that it only shows the specified
 	//RGBA values.
-	//wnd->ClearDisplay(0.0f, 0.0f, 0.0f, 1.0f);
-	wnd->ClearDisplay(1.0f, 0.0f, 1.0f, 1.0f);
+	sdlWindowManager->ClearDisplay(1.0f, 0.5f, 1.0f, 1.0f);
 
 	//Iterate through the gameobjects and render them.
 	for (GameObject* go : gameObjects)
@@ -167,5 +184,5 @@ void Scene::Render()
 	glEnd();
 
 	//Swap the window buffers
-	wnd->SwapBuffer();
+	sdlWindowManager->SwapBuffer();
 }

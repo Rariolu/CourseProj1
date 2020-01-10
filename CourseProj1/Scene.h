@@ -13,7 +13,13 @@ class Scene
 	public:
 		Scene();
 		~Scene();
+
+		//The method to be called when ending the scene and "disposing"
+		//its resources.
 		virtual void Dispose();
+
+		//The method to be called to set up the scene whenever it's started
+		//or restarted.
 		virtual void Initialise();
 		
 		//Begin the game loop of this scene
@@ -21,6 +27,7 @@ class Scene
 		//is designated or a quit event is
 		//triggered.
 		string Run();
+
 	protected:
 		//Create an instance of "GameObject" (using the name of a mesh, texture, and shader)
 		//and add it to the list of gameobjects which get renderered in the game loop.
@@ -42,11 +49,14 @@ class Scene
 		//frame and the current one.
 		void GenerateDeltaTime();
 
+		//Remove the given gameobject from the collection
+		//of those that are rendered.
 		void RemoveGameObject(GameObject* gameObject);
 
 		//Designate the next scene to be loaded.
 		void SetNextScene(string scenename);
 
+		//Set the current skybox to be used.
 		void SetSkyBox(SkyBox* _skybox);
 
 		//A pointer to an instance of "AudioDevice" used to play
@@ -56,8 +66,8 @@ class Scene
 		//The camera that's used to render the gameobjects
 		//from a particular perspective.
 		Camera* camera;
-	private:
 
+	private:
 		//Process the user's input and return true if
 		//the input determines that the scene loop should
 		//continue (and return false if it shouldn't).
@@ -98,6 +108,11 @@ class Scene
 		//The time stamp of the previous frame.
 		float previousTimeStamp = 0;
 
+		//The sdl window manager of the current openGL
+		//context (used to clear the display and swap buffers).
+		SDLWindowManager* sdlWindowManager;
+
+		//The skybox to be rendered in the background.
 		SkyBox* skybox;
 };
 

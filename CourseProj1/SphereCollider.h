@@ -11,11 +11,6 @@ class SphereCollider : public Collider
 	public:
 		SphereCollider(Vec3* pos, float r, bool isDefaultRadius = false);
 
-		//Resize the radius based on the given scale vector
-		//(using the minimum of the 3 values, as scaling can
-		//only be uniform).
-		void ApplyScale(Vec3 scale);
-
 		//Determines whether or not this collider
 		//collides with another, will only detect
 		//collisions with other sphere colliders.

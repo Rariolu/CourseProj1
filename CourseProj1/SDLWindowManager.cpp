@@ -30,6 +30,7 @@ SDLWindowManager* SDLWindowManager::Instance()
 
 void SDLWindowManager::ClearDisplay(float r, float g, float b, float a)
 {
+	//Clear the display so that only the given RGBA colour is displayed.
 	glClearColor(r, g, b, a);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
@@ -91,5 +92,6 @@ bool SDLWindowManager::Initialise(string windowTitle, float width, float height)
 
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
+
 	return true;
 }
