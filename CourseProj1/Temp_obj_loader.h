@@ -5,15 +5,7 @@
 #include <vector>
 #include <string>
 #include "Aliases.h"
-
-struct OBJIndex
-{
-	unsigned int vertexIndex;
-	unsigned int uvIndex;
-	unsigned int normalIndex;
-
-	bool operator<(const OBJIndex& r) const { return vertexIndex < r.vertexIndex; }
-};
+#include "Logger.h"
 
 class ObjIndexedModel
 {
@@ -29,23 +21,33 @@ class ObjIndexedModel
 class OBJModel
 {
 	public:
-		vector<OBJIndex> OBJIndices;
-		vector<Vec3> vertices;
-		vector<Vec2> uvs;
-		vector<Vec3> normals;
-		bool hasUVs;
-		bool hasNormals;
+		struct OBJIndex
+		{
+			unsigned int vertexIndex;
+			unsigned int uvIndex;
+			unsigned int normalIndex;
 
-		OBJModel(const string& fileName);
+			bool operator<(const OBJIndex& r) const { return vertexIndex < r.vertexIndex; }
+		};
+		bool hasNormals;
+		bool hasUVs;
+		vector<OBJIndex> OBJIndices;
+		vector<Vec3> normals;
+		vector<Vec2> uvs;
+		vector<Vec3> vertices;
+		
+		OBJModel(const string fileName);
 
 		ObjIndexedModel ToIndexedModel();
 	private:
-		unsigned int FindLastVertexIndex(const vector<OBJIndex*>& indexLookup, const OBJIndex* currentIndex, const ObjIndexedModel& result);
-		void CreateOBJFace(const string& line);
 
+		void CreateOBJFace(const string line);
+
+		unsigned int FindLastVertexIndex(const vector<OBJIndex*>& indexLookup, const OBJIndex* currentIndex, const ObjIndexedModel& result);
+		
+		OBJIndex ParseOBJIndex(const string& token, bool* hasUVs, bool* hasNormals);
 		Vec2 ParseOBJVec2(const string& line);
 		Vec3 ParseOBJVec3(const string& line);
-		OBJIndex ParseOBJIndex(const string& token, bool* hasUVs, bool* hasNormals);
 };
 
 #endif
