@@ -6,17 +6,22 @@
 struct Box
 {
 	public:
+		//Create a box around a hypothetical
+		//point by setting the boundaries
+		//so that the minimum values are less
+		//than zero and the maximum values are greater
+		//than zero.
 		Box(Vec3 bounds)
 		{
 			float xDelta = bounds.x / 2.0f;
 			float yDelta = bounds.y / 2.0f;
 			float zDelta = bounds.z / 2.0f;
-			/*minX vals[3]*/x[0] =	-xDelta;
-			/*minY vals[4]*/y[0] =	-yDelta;
-			/*minZ vals[5]*/z[0] =	-zDelta;
-			/*maxX vals[0]*/x[1] =	xDelta;
-			/*maxY vals[1]*/y[1] =	yDelta;
-			/*maxZ vals[2]*/z[1] =	zDelta;
+			x[0] =	-xDelta;
+			y[0] =	-yDelta;
+			z[0] =	-zDelta;
+			x[1] =	xDelta;
+			y[1] =	yDelta;
+			z[1] =	zDelta;
 			corners[0] = Vec3(x[0], y[0], z[0]);
 			corners[1] = Vec3(x[0], y[0], z[1]);
 			corners[2] = Vec3(x[0], y[1], z[0]);

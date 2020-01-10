@@ -171,7 +171,6 @@ xcopy /Y "$(SolutionDir)Dependencies\AL\lib\*.dll" "$(OutDir)"</Command>
     <ClCompile Include="QuadMShader.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="ObjLoad.cpp" />
     <ClCompile Include="SDLWindowManager.cpp" />
     <ClCompile Include="SkyBox.cpp" />
     <ClCompile Include="SkyboxShader.cpp" />
@@ -206,7 +205,6 @@ xcopy /Y "$(SolutionDir)Dependencies\AL\lib\*.dll" "$(OutDir)"</Command>
     <ClInclude Include="resource.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="ObjLoad.h" />
     <ClInclude Include="SDLWindowManager.h" />
     <ClInclude Include="SkyBox.h" />
     <ClInclude Include="SkyboxShader.h" />
