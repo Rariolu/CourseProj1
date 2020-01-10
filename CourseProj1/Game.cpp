@@ -37,6 +37,7 @@ int Game::CreateWindow(string windowTitle, float width, float height)
 void Game::Dispose()
 {
 	delete resourceManager;
+	delete windowManager;
 }
 
 void Game::ResourceSetup()
@@ -66,11 +67,6 @@ void Game::ResourceSetup()
 
 void Game::SetupMesh(string name, string objfile)
 {
-	//Mesh* mesh1 = nullptr;
-	//if (LoadOBJ(objfile, mesh1))
-	//{
-	//	resourceManager->AddMesh(name, mesh1);
-	//}
 	OBJModel model(objfile);
 	ObjIndexedModel imodel = model.ToIndexedModel();
 	Mesh* mesh = Mesh::LoadModel(&imodel);
