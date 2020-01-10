@@ -25,6 +25,10 @@ int RandomNumber(int min, int max);
 
 Matrix RemoveTranslation(Matrix mat);
 
+//Split the given string into multiple
+//substrings using a given character.
+vector<string> SplitString(string str, char delimiter);
+
 //Multiply the given value by itself and return the result.
 float SquareValue(float value);
 

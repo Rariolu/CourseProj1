@@ -4,18 +4,20 @@
 #include <glm.hpp>
 #include <vector>
 #include <string>
-#include "Aliases.h"
+#include "Util.h"
 #include "Logger.h"
 
 class ObjIndexedModel
 {
 	public:
+		//Calculate the normals based on the position vectors
+		//at the vertex indices.
+		void CalculateNormals();
+
+		vector<unsigned int> indices;
+		vector<Vec3> normals;
 		vector<Vec3> positions;
 		vector<Vec2> uvCoords;
-		vector<Vec3> normals;
-		vector<unsigned int> indices;
-
-		void CalcNormals();
 };
 
 class OBJModel
@@ -42,12 +44,10 @@ class OBJModel
 	private:
 
 		void CreateOBJFace(const string line);
-
 		unsigned int FindLastVertexIndex(const vector<OBJIndex*>& indexLookup, const OBJIndex* currentIndex, const ObjIndexedModel& result);
-		
 		OBJIndex ParseOBJIndex(const string& token, bool* hasUVs, bool* hasNormals);
-		Vec2 ParseOBJVec2(const string& line);
-		Vec3 ParseOBJVec3(const string& line);
+		Vec2 ParseOBJVec2(const string line);
+		Vec3 ParseOBJVec3(const string line);
 };
 
 #endif

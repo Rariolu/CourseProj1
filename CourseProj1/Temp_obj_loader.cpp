@@ -8,7 +8,31 @@ bool CompareOBJIndexPtr(const OBJModel::OBJIndex* a, const OBJModel::OBJIndex* b
 inline unsigned int FindNextChar(unsigned int start, const char* str, unsigned int length, char token);
 inline unsigned int ParseOBJIndexValue(const string& token, unsigned int start, unsigned int end);
 inline float ParseOBJFloatValue(const string& token, unsigned int start, unsigned int end);
-inline vector<string> SplitString(const string& s, char delim);
+//inline vector<string> SplitString(const string& s, char delim);
+
+void ObjIndexedModel::CalculateNormals()
+{
+	for (unsigned int i = 0; i < indices.size(); i += 3)
+	{
+		int i0 = indices[i];
+		int i1 = indices[i + 1];
+		int i2 = indices[i + 2];
+
+		Vec3 v1 = positions[i1] - positions[i0];
+		Vec3 v2 = positions[i2] - positions[i0];
+
+		Vec3 normal = glm::normalize(glm::cross(v1, v2));
+
+		normals[i0] += normal;
+		normals[i1] += normal;
+		normals[i2] += normal;
+	}
+
+	for (unsigned int i = 0; i < positions.size(); i++)
+	{
+		normals[i] = glm::normalize(normals[i]);
+	}
+}
 
 OBJModel::OBJModel(const string fileName)
 {
@@ -64,29 +88,7 @@ OBJModel::OBJModel(const string fileName)
 	}
 }
 
-void ObjIndexedModel::CalcNormals()
-{
-	for (unsigned int i = 0; i < indices.size(); i += 3)
-	{
-		int i0 = indices[i];
-		int i1 = indices[i + 1];
-		int i2 = indices[i + 2];
 
-		Vec3 v1 = positions[i1] - positions[i0];
-		Vec3 v2 = positions[i2] - positions[i0];
-
-		Vec3 normal = glm::normalize(glm::cross(v1, v2));
-
-		normals[i0] += normal;
-		normals[i1] += normal;
-		normals[i2] += normal;
-	}
-
-	for (unsigned int i = 0; i < positions.size(); i++)
-	{
-		normals[i] = glm::normalize(normals[i]);
-	}
-}
 
 ObjIndexedModel OBJModel::ToIndexedModel()
 {
@@ -149,6 +151,7 @@ ObjIndexedModel OBJModel::ToIndexedModel()
 		{
 			normalModelIndex = it->second;
 		}
+
 		//Create model which properly separates texture coordinates
 		unsigned int previousVertexLocation = FindLastVertexIndex(indexLookup, currentIndex, result);
 
@@ -171,14 +174,35 @@ ObjIndexedModel OBJModel::ToIndexedModel()
 
 	if (!hasNormals)
 	{
-		normalModel.CalcNormals();
+		normalModel.CalculateNormals();
 
 		for (unsigned int i = 0; i < result.positions.size(); i++)
+		{
 			result.normals[i] = normalModel.normals[indexMap[i]];
+		}
 	}
 
 	return result;
 };
+
+
+
+void OBJModel::CreateOBJFace(const string line)
+{
+	
+	vector<string> tokens = SplitString(line, ' ');
+
+	OBJIndices.push_back(ParseOBJIndex(tokens[1], &hasUVs, &hasNormals));
+	OBJIndices.push_back(ParseOBJIndex(tokens[2], &hasUVs, &hasNormals));
+	OBJIndices.push_back(ParseOBJIndex(tokens[3], &hasUVs, &hasNormals));
+
+	if ((int)tokens.size() > 4)
+	{
+		OBJIndices.push_back(ParseOBJIndex(tokens[1], &hasUVs, &hasNormals));
+		OBJIndices.push_back(ParseOBJIndex(tokens[3], &hasUVs, &hasNormals));
+		OBJIndices.push_back(ParseOBJIndex(tokens[4], &hasUVs, &hasNormals));
+	}
+}
 
 unsigned int OBJModel::FindLastVertexIndex(const vector<OBJIndex*>& indexLookup, const OBJIndex* currentIndex, const ObjIndexedModel& result)
 {
@@ -200,10 +224,13 @@ unsigned int OBJModel::FindLastVertexIndex(const vector<OBJIndex*>& indexLookup,
 				OBJIndex* possibleIndex = indexLookup[current - i];
 
 				if (possibleIndex == currentIndex)
+				{
 					continue;
-
+				}
 				if (possibleIndex->vertexIndex != currentIndex->vertexIndex)
+				{
 					break;
+				}
 
 				countStart--;
 			}
@@ -213,10 +240,14 @@ unsigned int OBJModel::FindLastVertexIndex(const vector<OBJIndex*>& indexLookup,
 				OBJIndex* possibleIndex = indexLookup[current + i];
 
 				if (possibleIndex == currentIndex)
+				{
 					continue;
+				}
 
 				if (possibleIndex->vertexIndex != currentIndex->vertexIndex)
+				{
 					break;
+				}
 				else if ((!hasUVs || possibleIndex->uvIndex == currentIndex->uvIndex)
 					&& (!hasNormals || possibleIndex->normalIndex == currentIndex->normalIndex))
 				{
@@ -225,15 +256,21 @@ unsigned int OBJModel::FindLastVertexIndex(const vector<OBJIndex*>& indexLookup,
 					Vec3 currentNormal;
 
 					if (hasUVs)
+					{
 						currentTexCoord = uvs[currentIndex->uvIndex];
+					}
 					else
+					{
 						currentTexCoord = Vec2(0, 0);
-
+					}
 					if (hasNormals)
+					{
 						currentNormal = normals[currentIndex->normalIndex];
+					}
 					else
+					{
 						currentNormal = Vec3(0, 0, 0);
-
+					}
 					for (unsigned int j = 0; j < result.positions.size(); j++)
 					{
 						if (currentPosition == result.positions[j]
@@ -251,9 +288,13 @@ unsigned int OBJModel::FindLastVertexIndex(const vector<OBJIndex*>& indexLookup,
 		else
 		{
 			if (testIndex->vertexIndex < currentIndex->vertexIndex)
+			{
 				start = current;
+			}
 			else
+			{
 				end = current;
+			}
 		}
 
 		previous = current;
@@ -261,22 +302,6 @@ unsigned int OBJModel::FindLastVertexIndex(const vector<OBJIndex*>& indexLookup,
 	}
 
 	return -1;
-}
-
-void OBJModel::CreateOBJFace(const string line)
-{
-	vector<string> tokens = SplitString(line, ' ');
-
-	OBJIndices.push_back(ParseOBJIndex(tokens[1], &hasUVs, &hasNormals));
-	OBJIndices.push_back(ParseOBJIndex(tokens[2], &hasUVs, &hasNormals));
-	OBJIndices.push_back(ParseOBJIndex(tokens[3], &hasUVs, &hasNormals));
-
-	if ((int)tokens.size() > 4)
-	{
-		OBJIndices.push_back(ParseOBJIndex(tokens[1], &hasUVs, &hasNormals));
-		OBJIndices.push_back(ParseOBJIndex(tokens[3], &hasUVs, &hasNormals));
-		OBJIndices.push_back(ParseOBJIndex(tokens[4], &hasUVs, &hasNormals));
-	}
 }
 
 OBJModel::OBJIndex OBJModel::ParseOBJIndex(const string& token, bool* hasUVs, bool* hasNormals)
@@ -313,7 +338,35 @@ OBJModel::OBJIndex OBJModel::ParseOBJIndex(const string& token, bool* hasUVs, bo
 	return result;
 }
 
-Vec3 OBJModel::ParseOBJVec3(const string& line)
+Vec2 OBJModel::ParseOBJVec2(const string line)
+{
+	unsigned int tokenLength = line.length();
+	const char* tokenString = line.c_str();
+
+	unsigned int vertIndexStart = 3;
+
+	while (vertIndexStart < tokenLength)
+	{
+		if (tokenString[vertIndexStart] != ' ')
+		{
+			break;
+		}
+		vertIndexStart++;
+	}
+
+	unsigned int vertIndexEnd = FindNextChar(vertIndexStart, tokenString, tokenLength, ' ');
+
+	float x = ParseOBJFloatValue(line, vertIndexStart, vertIndexEnd);
+
+	vertIndexStart = vertIndexEnd + 1;
+	vertIndexEnd = FindNextChar(vertIndexStart, tokenString, tokenLength, ' ');
+
+	float y = ParseOBJFloatValue(line, vertIndexStart, vertIndexEnd);
+
+	return Vec2(x, y);
+}
+
+Vec3 OBJModel::ParseOBJVec3(const string line)
 {
 	unsigned int tokenLength = line.length();
 	const char* tokenString = line.c_str();
@@ -323,7 +376,9 @@ Vec3 OBJModel::ParseOBJVec3(const string& line)
 	while (vertIndexStart < tokenLength)
 	{
 		if (tokenString[vertIndexStart] != ' ')
+		{
 			break;
+		}
 		vertIndexStart++;
 	}
 
@@ -342,34 +397,6 @@ Vec3 OBJModel::ParseOBJVec3(const string& line)
 	float z = ParseOBJFloatValue(line, vertIndexStart, vertIndexEnd);
 
 	return Vec3(x, y, z);
-
-	//Vec3(atof(tokens[1].c_str()), atof(tokens[2].c_str()), atof(tokens[3].c_str()))
-}
-
-Vec2 OBJModel::ParseOBJVec2(const string& line)
-{
-	unsigned int tokenLength = line.length();
-	const char* tokenString = line.c_str();
-
-	unsigned int vertIndexStart = 3;
-
-	while (vertIndexStart < tokenLength)
-	{
-		if (tokenString[vertIndexStart] != ' ')
-			break;
-		vertIndexStart++;
-	}
-
-	unsigned int vertIndexEnd = FindNextChar(vertIndexStart, tokenString, tokenLength, ' ');
-
-	float x = ParseOBJFloatValue(line, vertIndexStart, vertIndexEnd);
-
-	vertIndexStart = vertIndexEnd + 1;
-	vertIndexEnd = FindNextChar(vertIndexStart, tokenString, tokenLength, ' ');
-
-	float y = ParseOBJFloatValue(line, vertIndexStart, vertIndexEnd);
-
-	return Vec2(x, y);
 }
 
 static bool CompareOBJIndexPtr(const OBJModel::OBJIndex* a, const OBJModel::OBJIndex* b)
@@ -384,7 +411,9 @@ static inline unsigned int FindNextChar(unsigned int start, const char* str, uns
 	{
 		result++;
 		if (str[result] == token)
+		{
 			break;
+		}
 	}
 
 	return result;
@@ -400,28 +429,30 @@ static inline float ParseOBJFloatValue(const string& token, unsigned int start, 
 	return (float)atof(token.substr(start, end - start).c_str());
 }
 
-static inline vector<string> SplitString(const string& s, char delim)
-{
-	vector<string> elems;
-
-	const char* cstr = s.c_str();
-	unsigned int strLength = s.length();
-	unsigned int start = 0;
-	unsigned int end = 0;
-
-	while (end <= strLength)
-	{
-		while (end <= strLength)
-		{
-			if (cstr[end] == delim)
-				break;
-			end++;
-		}
-
-		elems.push_back(s.substr(start, end - start));
-		start = end + 1;
-		end = start;
-	}
-
-	return elems;
-}
+//inline vector<string> SplitString(const string& s, char delim)
+//{
+//	vector<string> elems;
+//
+//	const char* cstr = s.c_str();
+//	unsigned int strLength = s.length();
+//	unsigned int start = 0;
+//	unsigned int end = 0;
+//
+//	while (end <= strLength)
+//	{
+//		while (end <= strLength)
+//		{
+//			if (cstr[end] == delim)
+//			{
+//				break;
+//			}
+//			end++;
+//		}
+//
+//		elems.push_back(s.substr(start, end - start));
+//		start = end + 1;
+//		end = start;
+//	}
+//
+//	return elems;
+//}

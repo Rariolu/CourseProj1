@@ -30,6 +30,34 @@ Matrix RemoveTranslation(Matrix mat)
 	//TODO: Replace with more efficient method
 }
 
+vector<string> SplitString(string str, char delimiter)
+{
+	vector<string> elems;
+
+	const char* cstr = str.c_str();
+	unsigned int strLength = str.length();
+	unsigned int start = 0;
+	unsigned int end = 0;
+
+	while (end <= strLength)
+	{
+		while (end <= strLength)
+		{
+			if (cstr[end] == delimiter)
+			{
+				break;
+			}
+			end++;
+		}
+
+		elems.push_back(str.substr(start, end - start));
+		start = end + 1;
+		end = start;
+	}
+
+	return elems;
+}
+
 float SquareValue(float value)
 {
 	return value * value;
