@@ -44,7 +44,7 @@ void CollisionDemoScene::Initialise()
 void CollisionDemoScene::CreateCube()
 {
 	CollisionCube* cube = new CollisionCube();
-	cube->SetPosition(RandomNumber(-5, 5), 0, RandomNumber(8, 12));
+	cube->SetPosition((float)RandomNumber(-5, 5), 0, (float)RandomNumber(8, 12));
 	cubes.push_back(cube);
 	AddGameObject(cube);
 }
@@ -136,8 +136,10 @@ bool CollisionDemoScene::MouseDown(SDL_MouseButtonEvent mouseButton)
 
 bool CollisionDemoScene::Update()
 {
+	//Store the projectiles and cubes that are to be "destroyed".
 	vector<ProjectileGameObject*> destroyedBalls;
 	vector<CollisionCube*> destroyedCubes;
+
 	//Iterate through all the projectiles and cubes to determine if
 	//they collide.
 	for (ProjectileGameObject* ball : projectiles)
@@ -149,9 +151,15 @@ bool CollisionDemoScene::Update()
 		{
 			if (ball->CollidesWith(cube))
 			{
+				//Set the projectile and cube
+				//to be inactive so that they
+				//don't collide with anything else.
+				ball->SetActive(false);
 				cube->SetActive(false);
+				
 				destroyedCubes.push_back(cube);
 				destroyedBalls.push_back(ball);
+
 				audioDevice->PlaySound(shotSource, *ball->GetPosition());
 			}
 		}

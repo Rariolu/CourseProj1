@@ -19,6 +19,7 @@ class Collider
 	public:
 		Collider(COLLIDERTYPE type, Vec3* pos);
 
+		//Resize the collider according to the specified scale vector.
 		virtual void ApplyScale(Vec3 scale) = 0;
 
 		//Returns true if a collision occurs between
@@ -34,6 +35,8 @@ class Collider
 		Vec3 GetPosition();
 		
 	protected:
+		//Return a pointer to the (x,y,z) location
+		//of this collider.
 		Vec3* GetPositionPointer();
 
 	private:

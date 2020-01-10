@@ -2,7 +2,10 @@
 
 ProjectileGameObject::ProjectileGameObject() : GameObject(ballMeshName, shaderName, texture2Name)
 {
-	position = /*GetTransform()->*/GetPosition();
+	//Retrieve a pointer to the gameobject's
+	//position vector so that its translation
+	//can be calculated when "Update" is called.
+	position = GetPosition();
 	const float ballScale = 0.05f;
 	SetScale(ballScale);
 }
@@ -17,13 +20,20 @@ void ProjectileGameObject::SetScale(float scale)
 	GameObject::SetScale(Vec3(scale, scale, scale));
 	if (sphereCollider)
 	{
-		delete sphereCollider;
+		sphereCollider->SetRadius(scale);
 	}
-	sphereCollider = new SphereCollider(position, scale);
+	else
+	{
+		sphereCollider = new SphereCollider(position, scale);
+	}
+	
 	SetCollider(sphereCollider);
 }
 
 void ProjectileGameObject::Update(float delta)
 {
+	//travel quantity = speed * delta
+	//velocity = direction * travel quantity
+	//New Position = Current position + velocity
 	SetPosition((*position) + (direction * (speed * delta)));
 }
