@@ -16,9 +16,6 @@ class Mesh
 		~Mesh();
 
 		//Generate a mesh from a set of vertices, normals, and UV coordinates.
-		static Mesh* LoadModel(IndexedModel* model);
-
-		//Generate a mesh from a set of vertices, normals, and UV coordinates.
 		static Mesh* LoadModel(ObjIndexedModel* model);
 
 		//Tell openGL to display the model onscreen.
@@ -28,9 +25,6 @@ class Mesh
 		//Create a new instance of "Mesh" (private so that instances can
 		//only be made with the "LoadModel" method).
 		Mesh();
-
-		//Initialise the mesh based on the given vertices, normals, and UV coordinates.
-		void InitialiseModel(IndexedModel* model);
 
 		//Initialise the mesh based on the given vertices, normals, and UV coordinates.
 		void InitialiseModel(ObjIndexedModel* model);

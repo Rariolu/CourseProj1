@@ -300,7 +300,7 @@ unsigned int OBJModel::FindLastVertexIndex(const vector<OBJIndex*>& indexLookup,
 	return -1;
 }
 
-OBJModel::OBJIndex OBJModel::ParseOBJIndex(const string& token, bool* hasUVs, bool* hasNormals)
+OBJModel::OBJIndex OBJModel::ParseOBJIndex(const string token, bool* hasUVs, bool* hasNormals)
 {
 	unsigned int tokenLength = token.length();
 	const char* tokenString = token.c_str();

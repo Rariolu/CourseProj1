@@ -47,7 +47,7 @@ class OBJModel
 	private:
 		void CreateOBJFace(const string line);
 		unsigned int FindLastVertexIndex(const vector<OBJIndex*>& indexLookup, const OBJIndex* currentIndex, const ObjIndexedModel& result);
-		OBJIndex ParseOBJIndex(const string& token, bool* hasUVs, bool* hasNormals);
+		OBJIndex ParseOBJIndex(const string token, bool* hasUVs, bool* hasNormals);
 		Vec2 ParseOBJVec2(const string line);
 		Vec3 ParseOBJVec3(const string line);
 };
