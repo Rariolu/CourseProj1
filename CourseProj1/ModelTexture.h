@@ -11,11 +11,16 @@
 class ModelTexture
 {
 	public:
+		//Load a model texture from a given
+		//file path.
 		ModelTexture(string filename);
 		~ModelTexture();
+
+		//Bind the texture to the openGL buffer.
 		void Bind();
 	private:
-		unsigned int thisUnit = 0;
+
+		//The unique ID of this texture.
 		GLuint textureHandler;
 };
 

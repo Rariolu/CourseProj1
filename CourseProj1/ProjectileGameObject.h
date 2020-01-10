@@ -34,7 +34,7 @@ class ProjectileGameObject : public GameObject
 		Vec3* position;
 
 		//The speed that the projectile travels in.
-		const float speed = 4.0f;
+		const float speed = 8.0f;
 
 		//The collider used to determine collisions
 		//between this and other gameobjects.

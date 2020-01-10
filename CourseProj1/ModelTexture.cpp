@@ -14,6 +14,7 @@ ModelTexture::ModelTexture(string filename)
 		Log("Image from file \"" + filename + "\" failed to load.");
 	}
 
+	//Generate texture ID
 	glGenTextures(1, &textureHandler);
 	glBindTexture(GL_TEXTURE_2D, textureHandler);
 
@@ -25,18 +26,18 @@ ModelTexture::ModelTexture(string filename)
 
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
 
+	//Free image data resources now that it's no longer required.
 	stbi_image_free(imageData);
 }
 
 ModelTexture::~ModelTexture()
 {
+	//Delete the openGL texture
 	glDeleteTextures(1, &textureHandler);
 }
 
 void ModelTexture::Bind()
 {
-	assert(thisUnit >= 0 && thisUnit <= 31);
-
-	glActiveTexture(GL_TEXTURE0 + thisUnit);
+	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, textureHandler);
 }
