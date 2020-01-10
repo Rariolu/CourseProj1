@@ -29,7 +29,6 @@ class OBJModel
 			{
 				return vertexIndex < r.vertexIndex;
 			}
-
 			unsigned int normalIndex;
 			unsigned int uvIndex;
 			unsigned int vertexIndex;

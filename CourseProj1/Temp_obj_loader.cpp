@@ -5,7 +5,6 @@
 #include <map>
 
 bool CompareOBJIndexPtr(const OBJModel::OBJIndex* a, const OBJModel::OBJIndex* b);
-//inline unsigned int FindNextChar(unsigned int start, const char* str, unsigned int length, char token);
 inline unsigned int ParseOBJIndexValue(const string& token, unsigned int start, unsigned int end);
 inline float ParseOBJFloatValue(const string& token, unsigned int start, unsigned int end);
 
@@ -183,8 +182,6 @@ ObjIndexedModel OBJModel::ToIndexedModel()
 
 	return result;
 };
-
-
 
 void OBJModel::CreateOBJFace(const string line)
 {
@@ -402,21 +399,6 @@ bool CompareOBJIndexPtr(const OBJModel::OBJIndex* a, const OBJModel::OBJIndex* b
 {
 	return a->vertexIndex < b->vertexIndex;
 }
-
-//inline unsigned int FindNextChar(unsigned int start, const char* str, unsigned int length, char token)
-//{
-//	unsigned int result = start;
-//	while (result < length)
-//	{
-//		result++;
-//		if (str[result] == token)
-//		{
-//			break;
-//		}
-//	}
-//
-//	return result;
-//}
 
 static inline unsigned int ParseOBJIndexValue(const string& token, unsigned int start, unsigned int end)
 {
