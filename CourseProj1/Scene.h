@@ -108,7 +108,8 @@ class Scene
 		//The time stamp of the previous frame.
 		float previousTimeStamp = 0;
 
-		ResourceManager* resourceManager = ResourceManager::Instance();
+		//A pointer to the resource manager.
+		ResourceManager* resourceManager;
 
 		//The sdl window manager of the current openGL
 		//context (used to clear the display and swap buffers).

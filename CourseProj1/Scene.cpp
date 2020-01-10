@@ -5,7 +5,7 @@ Scene::Scene()
 	audioDevice = AudioDevice::Instance();
 	sdlWindowManager = SDLWindowManager::Instance();
 	camera = new Camera(70.0f, sdlWindowManager->GetScreenWidth() / sdlWindowManager->GetScreenHeight(), 0.01f, 1000.0f);
-	
+	resourceManager = ResourceManager::Instance();
 }
 
 Scene::~Scene()
