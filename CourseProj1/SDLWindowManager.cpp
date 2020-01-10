@@ -67,6 +67,7 @@ bool SDLWindowManager::Initialise(string windowTitle, float width, float height)
 	//Create a double buffer (two RGB buffers that are alternated between).
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
+	//Attempt to create SDL window.
 	sdlWindow = SDL_CreateWindow(windowTitle.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, (int)width, (int)height, SDL_WINDOW_OPENGL);
 	if (!sdlWindow)
 	{
@@ -74,6 +75,7 @@ bool SDLWindowManager::Initialise(string windowTitle, float width, float height)
 		return false;
 	}
 
+	//Attempt to create openGL context
 	openGLContext = new SDL_GLContext(SDL_GL_CreateContext(sdlWindow));
 	if (!(*openGLContext))
 	{
@@ -81,16 +83,21 @@ bool SDLWindowManager::Initialise(string windowTitle, float width, float height)
 		return false;
 	}
 
+	//Attempt to initialise openGL
 	GLenum glState = glewInit();
 	if (glState != GLEW_OK)
 	{
 		Log("OpenGL failed to initialise.");
 		return false;
 	}
-
+	
+	//Clear the display to show only the given RGBA colour.
 	glClearColor(0.0f, 1.0f, 1.0f, 1.0f);
 
 	glEnable(GL_DEPTH_TEST);
+
+	//Tell openGL to only render polygons that should
+	//be visible from the camera's perspective.
 	glEnable(GL_CULL_FACE);
 
 	return true;
