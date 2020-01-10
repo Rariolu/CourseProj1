@@ -12,7 +12,13 @@ struct Transform : public MutablePoint
 
 		//Return the "model" matrix.
 		Matrix GetModel();
+
+		//Return a pointer to the rotation vector
+		//of this transform.
 		Vec3* GetRotation();
+
+		//Return a pointer to the scale vector
+		//of this transform.
 		Vec3* GetScale();
 
 		//Rotate the object on a given axis by a given
