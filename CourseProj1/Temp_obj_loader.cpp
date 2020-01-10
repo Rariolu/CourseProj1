@@ -5,10 +5,9 @@
 #include <map>
 
 bool CompareOBJIndexPtr(const OBJModel::OBJIndex* a, const OBJModel::OBJIndex* b);
-inline unsigned int FindNextChar(unsigned int start, const char* str, unsigned int length, char token);
+//inline unsigned int FindNextChar(unsigned int start, const char* str, unsigned int length, char token);
 inline unsigned int ParseOBJIndexValue(const string& token, unsigned int start, unsigned int end);
 inline float ParseOBJFloatValue(const string& token, unsigned int start, unsigned int end);
-//inline vector<string> SplitString(const string& s, char delim);
 
 void ObjIndexedModel::CalculateNormals()
 {
@@ -310,7 +309,7 @@ OBJModel::OBJIndex OBJModel::ParseOBJIndex(const string& token, bool* hasUVs, bo
 	const char* tokenString = token.c_str();
 
 	unsigned int vertIndexStart = 0;
-	unsigned int vertIndexEnd = FindNextChar(vertIndexStart, tokenString, tokenLength, '/');
+	unsigned int vertIndexEnd = FindIndexOf(vertIndexStart, tokenString, tokenLength, '/');
 
 	OBJIndex result;
 	result.vertexIndex = ParseOBJIndexValue(token, vertIndexStart, vertIndexEnd);
@@ -321,7 +320,7 @@ OBJModel::OBJIndex OBJModel::ParseOBJIndex(const string& token, bool* hasUVs, bo
 		return result;
 
 	vertIndexStart = vertIndexEnd + 1;
-	vertIndexEnd = FindNextChar(vertIndexStart, tokenString, tokenLength, '/');
+	vertIndexEnd = FindIndexOf(vertIndexStart, tokenString, tokenLength, '/');
 
 	result.uvIndex = ParseOBJIndexValue(token, vertIndexStart, vertIndexEnd);
 	*hasUVs = true;
@@ -330,7 +329,7 @@ OBJModel::OBJIndex OBJModel::ParseOBJIndex(const string& token, bool* hasUVs, bo
 		return result;
 
 	vertIndexStart = vertIndexEnd + 1;
-	vertIndexEnd = FindNextChar(vertIndexStart, tokenString, tokenLength, '/');
+	vertIndexEnd = FindIndexOf(vertIndexStart, tokenString, tokenLength, '/');
 
 	result.normalIndex = ParseOBJIndexValue(token, vertIndexStart, vertIndexEnd);
 	*hasNormals = true;
@@ -354,12 +353,12 @@ Vec2 OBJModel::ParseOBJVec2(const string line)
 		vertIndexStart++;
 	}
 
-	unsigned int vertIndexEnd = FindNextChar(vertIndexStart, tokenString, tokenLength, ' ');
+	unsigned int vertIndexEnd = FindIndexOf(vertIndexStart, tokenString, tokenLength, ' ');
 
 	float x = ParseOBJFloatValue(line, vertIndexStart, vertIndexEnd);
 
 	vertIndexStart = vertIndexEnd + 1;
-	vertIndexEnd = FindNextChar(vertIndexStart, tokenString, tokenLength, ' ');
+	vertIndexEnd = FindIndexOf(vertIndexStart, tokenString, tokenLength, ' ');
 
 	float y = ParseOBJFloatValue(line, vertIndexStart, vertIndexEnd);
 
@@ -382,42 +381,42 @@ Vec3 OBJModel::ParseOBJVec3(const string line)
 		vertIndexStart++;
 	}
 
-	unsigned int vertIndexEnd = FindNextChar(vertIndexStart, tokenString, tokenLength, ' ');
+	unsigned int vertIndexEnd = FindIndexOf(vertIndexStart, tokenString, tokenLength, ' ');
 
 	float x = ParseOBJFloatValue(line, vertIndexStart, vertIndexEnd);
 
 	vertIndexStart = vertIndexEnd + 1;
-	vertIndexEnd = FindNextChar(vertIndexStart, tokenString, tokenLength, ' ');
+	vertIndexEnd = FindIndexOf(vertIndexStart, tokenString, tokenLength, ' ');
 
 	float y = ParseOBJFloatValue(line, vertIndexStart, vertIndexEnd);
 
 	vertIndexStart = vertIndexEnd + 1;
-	vertIndexEnd = FindNextChar(vertIndexStart, tokenString, tokenLength, ' ');
+	vertIndexEnd = FindIndexOf(vertIndexStart, tokenString, tokenLength, ' ');
 
 	float z = ParseOBJFloatValue(line, vertIndexStart, vertIndexEnd);
 
 	return Vec3(x, y, z);
 }
 
-static bool CompareOBJIndexPtr(const OBJModel::OBJIndex* a, const OBJModel::OBJIndex* b)
+bool CompareOBJIndexPtr(const OBJModel::OBJIndex* a, const OBJModel::OBJIndex* b)
 {
 	return a->vertexIndex < b->vertexIndex;
 }
 
-static inline unsigned int FindNextChar(unsigned int start, const char* str, unsigned int length, char token)
-{
-	unsigned int result = start;
-	while (result < length)
-	{
-		result++;
-		if (str[result] == token)
-		{
-			break;
-		}
-	}
-
-	return result;
-}
+//inline unsigned int FindNextChar(unsigned int start, const char* str, unsigned int length, char token)
+//{
+//	unsigned int result = start;
+//	while (result < length)
+//	{
+//		result++;
+//		if (str[result] == token)
+//		{
+//			break;
+//		}
+//	}
+//
+//	return result;
+//}
 
 static inline unsigned int ParseOBJIndexValue(const string& token, unsigned int start, unsigned int end)
 {
@@ -428,31 +427,3 @@ static inline float ParseOBJFloatValue(const string& token, unsigned int start, 
 {
 	return (float)atof(token.substr(start, end - start).c_str());
 }
-
-//inline vector<string> SplitString(const string& s, char delim)
-//{
-//	vector<string> elems;
-//
-//	const char* cstr = s.c_str();
-//	unsigned int strLength = s.length();
-//	unsigned int start = 0;
-//	unsigned int end = 0;
-//
-//	while (end <= strLength)
-//	{
-//		while (end <= strLength)
-//		{
-//			if (cstr[end] == delim)
-//			{
-//				break;
-//			}
-//			end++;
-//		}
-//
-//		elems.push_back(s.substr(start, end - start));
-//		start = end + 1;
-//		end = start;
-//	}
-//
-//	return elems;
-//}

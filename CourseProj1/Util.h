@@ -3,6 +3,9 @@
 
 #include "Aliases.h"
 
+//Find the index of a requested character after a given start point in a string.
+unsigned int FindIndexOf(unsigned int start, const char* str, unsigned int length, char token);
+
 //Return the text stored in the given file path.
 string LoadText(string filename);
 
@@ -23,6 +26,7 @@ T min(T a, T b)
 //Returns a random number within the given range.
 int RandomNumber(int min, int max);
 
+//Remove translation units from the given matrix.
 Matrix RemoveTranslation(Matrix mat);
 
 //Split the given string into multiple

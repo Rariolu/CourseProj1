@@ -25,12 +25,19 @@ class OBJModel
 	public:
 		struct OBJIndex
 		{
-			unsigned int vertexIndex;
-			unsigned int uvIndex;
-			unsigned int normalIndex;
+			bool operator<(const OBJIndex& r) const
+			{
+				return vertexIndex < r.vertexIndex;
+			}
 
-			bool operator<(const OBJIndex& r) const { return vertexIndex < r.vertexIndex; }
+			unsigned int normalIndex;
+			unsigned int uvIndex;
+			unsigned int vertexIndex;
 		};
+
+		OBJModel(const string fileName);
+		ObjIndexedModel ToIndexedModel();
+
 		bool hasNormals;
 		bool hasUVs;
 		vector<OBJIndex> OBJIndices;
@@ -38,11 +45,7 @@ class OBJModel
 		vector<Vec2> uvs;
 		vector<Vec3> vertices;
 		
-		OBJModel(const string fileName);
-
-		ObjIndexedModel ToIndexedModel();
 	private:
-
 		void CreateOBJFace(const string line);
 		unsigned int FindLastVertexIndex(const vector<OBJIndex*>& indexLookup, const OBJIndex* currentIndex, const ObjIndexedModel& result);
 		OBJIndex ParseOBJIndex(const string& token, bool* hasUVs, bool* hasNormals);

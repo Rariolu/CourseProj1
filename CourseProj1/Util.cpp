@@ -1,5 +1,20 @@
 #include "Util.h"
 
+unsigned int FindIndexOf(unsigned int start, const char* str, unsigned int length, char token)
+{
+	unsigned int result = start;
+	while (result < length)
+	{
+		result++;
+		if (str[result] == token)
+		{
+			break;
+		}
+	}
+
+	return result;
+}
+
 string LoadText(string filename)
 {
 	InputFileStream file;
